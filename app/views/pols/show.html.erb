@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<img src="/assets/200x250/<%= @pol.bioguide_id %>.jpg" />
 <h1><% if @pol.title == "Rep" %>Rep. <% else %>Sen. <% end %><%= @pol.firstname %> <%= @pol.lastname %></h1>
 <h2><% if @pol.party == "D" %>Democrat<% elsif @pol.party =="R" %>Republican<% else %>Independent<% end %></h2>
 <h2><% if @pol.district != 0 %>
