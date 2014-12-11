@@ -6,6 +6,7 @@
       <th>Title</th>
       <th>First</th>
       <th>Last</th>
+      <th>Nickname</th>
       <th>Party</th>
       <th>District</th>
       <th>State</th>
@@ -21,11 +22,12 @@
       <td><%= pol.title %></td>
       <td><%= pol.firstname %></td>
       <td><%= pol.lastname %></td>
+      <td><%= pol.nickname %></td>
       <td><%= pol.party %></td>
       <td><% if pol.district == 0 %> <% else %><%= pol.district %><% end %></td>
       <td><%= pol.state %></td>
-      <td><%= pol.twitter_id %></td>
-      <td><%= pol.facebook_id %></td>
+      <td><a href="https://twitter.com/<%= pol.twitter_id %>"><%= pol.twitter_id %></a></td>
+      <td><a href="https://facebook.com/<%= pol.facebook_id %>"><%= pol.facebook_id %></a></td>
       <td><% if pol.youtube_url.nil? %> <% else %><a href="<%= pol.youtube_url %>"><%= pol.youtube_url %></a><% end %></td>
       <td><%= link_to 'Show', pol %></td>
       <td><%= link_to 'Edit', edit_pol_path(pol) %></td>

@@ -10,6 +10,11 @@ class PolsController < ApplicationController
   # GET /pols/1
   # GET /pols/1.json
   def show
+    @pol = Pol.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @pol }
+    end
   end
 
   # GET /pols/new
