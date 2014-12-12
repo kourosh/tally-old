@@ -1,4 +1,13 @@
-<h1>Editing pol</h1>
+<h1>Edit Politican Info</h1>
+<%= form_for [@pol], method: "put" do |f| %>
+	<p>First Name: <%= f.text_field(:firstname) %></p>
+	<p>Last Name: <%= f.text_field(:lastname) %></p>
+	<p>In Office:</p> 
+
+
+	<%= submit_tag("Edit Politician") %>
+	<%= submit_tag("Delete Politician", name: "delete") %>
+	<% end %>
 
 <%= render 'form' %>
 

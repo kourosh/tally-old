@@ -24,6 +24,7 @@ class PolsController < ApplicationController
 
   # GET /pols/1/edit
   def edit
+    @pol = Pol.find(params[:id])
   end
 
   # POST /pols
