@@ -1,28 +1,11 @@
-== README
+# Tally Documentation
+Tally is a website and, eventually, a mobile application that makes it easier to make donations to political candidates and incumbants while at the same time making politicians more accountable for their actions. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tally updates around the clock with news about candidates and politicians. For each action that politicians take, users can send $5 to the politicians for actions they approve, or $5 to an opponent for actions they oppose. Tally keeps, well, a tally of the donations for every action. 
 
-Things you may want to cover:
+##Tech stack:
+* Ruby on Rails for administration of politician data, news content management system and payments
+* Javascript with Backbone.js for front-end interface
+* Postgres for database
+* Heroku for hosting environment
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
