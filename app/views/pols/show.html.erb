@@ -5,7 +5,8 @@
 <h2><% if @pol.district != 0 %>
 			District <%= @pol.district %>, 
 			<% end %>
-			<%= @pol.state %>
+<h2><%= @pol.state %></h2>
+<h2><% if @pol.in_office %>In office<% else %>Not in office<% end %></h2>
 <p><%= link_to 'Edit', edit_pol_path(@pol) %> |
 <%= link_to 'Back', pols_path %></p>
 

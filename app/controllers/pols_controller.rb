@@ -75,6 +75,6 @@ class PolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pol_params
-      params[:pol]
+      params.require(:pol).permit(:firstname, :lastname, :in_office)
     end
 end

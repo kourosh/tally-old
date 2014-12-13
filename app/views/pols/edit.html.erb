@@ -2,14 +2,13 @@
 <%= form_for [@pol], method: "put" do |f| %>
 	<p>First Name: <%= f.text_field(:firstname) %></p>
 	<p>Last Name: <%= f.text_field(:lastname) %></p>
-	<p>In Office:</p> 
+	<p>In Office: <%= f.check_box :in_office %></p>
 
 
-	<%= submit_tag("Edit Politician") %>
+	<%= submit_tag("Update Politician") %>
 	<%= submit_tag("Delete Politician", name: "delete") %>
 	<% end %>
 
-<%= render 'form' %>
 
 <%= link_to 'Show', @pol %> |
 <%= link_to 'Back', pols_path %>
