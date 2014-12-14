@@ -11,14 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141213193404) do
+ActiveRecord::Schema.define(version: 20141214181948) do
 
-  create_table "events", force: true do |t|
-    t.string   "headline"
-    t.string   "source"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+# Could not dump table "events" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "pols", force: true do |t|
     t.string   "bioguide_id"
@@ -57,6 +53,13 @@ ActiveRecord::Schema.define(version: 20141213193404) do
     t.string   "votesmart_id"
     t.string   "website"
     t.string   "youtube_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "search_suggestions", force: true do |t|
+    t.string   "term"
+    t.integer  "popularity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
