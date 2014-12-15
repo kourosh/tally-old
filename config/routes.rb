@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :search_suggestions
-
   resources :events
+
+  resources :search_suggestions
 
   resources :users
 

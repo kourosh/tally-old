@@ -1,11 +1,10 @@
-<h1>All Events</h1>
+<h1>Listing events</h1>
 
 <table>
   <thead>
     <tr>
       <th>Headline</th>
       <th>Source</th>
-      <th>Related Politician</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,7 +14,6 @@
       <tr>
         <td><%= event.headline %></td>
         <td><%= event.source %></td>
-        <td><%= event.pol_id %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
