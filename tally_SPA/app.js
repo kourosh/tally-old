@@ -19,4 +19,33 @@ $(document).ready(function() {
     urlRoot: "/users"
   });
 
+  var users = new Users();
+
+  //set up events collection
+  var Events = Backbone.collection.extend({
+    url: ""
+  });
+
+  //set up events model
+  var Event = Backbone.Model.extend({
+    urlRoot: ""
+  });
+
+  var events = new Events();
+
+  //set up post list view
+  var AllEvents = Backbone.View.extend({
+    el: "#container",
+
+    render: function() {
+      events.fetch({
+        success: function() {
+          compile_template("#event-feed", events.models);
+        }
+      });
+    }
+  });
+
+   Backbone.history.start();
+
 });
