@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'simple_form', '~> 3.1.0'
 
+gem 'rails4-autocomplete'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use sqlite3 as the database for Active Record
