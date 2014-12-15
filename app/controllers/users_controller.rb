@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :confirgurebraintree, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -25,6 +26,9 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @client_token = Braintree::ClientToken.generate(
+      :customer_id => @user.id
+    )
 
     respond_to do |format|
       if @user.save
