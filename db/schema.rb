@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211191445) do
+ActiveRecord::Schema.define(version: 20141214235951) do
+
+  create_table "events", force: true do |t|
+    t.string   "headline"
+    t.string   "source"
+    t.integer  "pol_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pols", force: true do |t|
     t.string   "bioguide_id"
@@ -50,6 +58,29 @@ ActiveRecord::Schema.define(version: 20141211191445) do
     t.string   "votesmart_id"
     t.string   "website"
     t.string   "youtube_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "fullname"
+  end
+
+  create_table "search_suggestions", force: true do |t|
+    t.string   "term"
+    t.integer  "popularity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email"
+    t.string   "user_first_name"
+    t.string   "user_last_name"
+    t.string   "user_street_address"
+    t.string   "user_city"
+    t.integer  "user_zip"
+    t.string   "user_phone"
+    t.string   "occupation"
+    t.string   "employer_name"
+    t.boolean  "unemployed_or_retired"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

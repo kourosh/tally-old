@@ -1,5 +1,11 @@
+<p id="notice"><%= notice %></p>
 <h1>New pol</h1>
+<%= form_for [@pol], method: "create" do |f| %>
+	<p>First Name: <%= f.text_field(:firstname) %></p>
+	<p>Last Name: <%= f.text_field(:lastname) %></p>
+	<p>In Office: <%= f.check_box :in_office %></p>
+<%= submit_tag("Create Politician") %>
+<% end %>
 
-<%= render 'form' %>
-
+<%= link_to 'Show', @pol %>
 <%= link_to 'Back', pols_path %>

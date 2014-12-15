@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  resources :events
+
+  resources :search_suggestions
+
   resources :users
 
   resources :pols
+
+  resources :politicians
 
 
   # The priority is based upon order of creation: first created -> highest priority.
