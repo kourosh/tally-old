@@ -26,16 +26,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @client_token = Braintree::ClientToken.generate(
-      :customer_id => @user.id
-    )
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -44,14 +39,20 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
-      else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    result = Braintree::Customer.create(
+      :payment_method_nonce => params[:nonce]
+      :customer_id => @user.id
+      )
+    if result.success?
+      respond_to do |format|
+        if @user.update(user_params)
+          format.json { render :show, status: :ok, location: @user }
+        else
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      p result.errors
     end
   end
 
@@ -60,7 +61,6 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
