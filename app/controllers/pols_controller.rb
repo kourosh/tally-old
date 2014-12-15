@@ -34,7 +34,7 @@ class PolsController < ApplicationController
 
     respond_to do |format|
       if @pol.save
-        format.html { redirect_to @pol, notice: 'Pol was successfully created.' }
+        format.html { redirect_to @pol, notice: 'Successfully created politician.' }
         format.json { render :show, status: :created, location: @pol }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class PolsController < ApplicationController
   def update
     respond_to do |format|
       if @pol.update(pol_params)
-        format.html { redirect_to @pol, notice: 'Pol was successfully updated.' }
+        format.html { redirect_to @pol, notice: 'Successfully updated politician.' }
         format.json { render :show, status: :ok, location: @pol }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class PolsController < ApplicationController
   def destroy
     @pol.destroy
     respond_to do |format|
-      format.html { redirect_to pols_url, notice: 'Pol was successfully destroyed.' }
+      format.html { redirect_to pols_url, notice: 'Politician was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -20,9 +20,9 @@
     <%= f.text_field :source %>
   </div>
   <div class="field">
-    <%= f.label :pol_name %><br>
-    <%= f.text_field :pol_name  %>
-  </div>  
+    <%= f.label "Politicians" %><br />
+    <%= f.collection_select :pol_fullname, Pol.order(:fullname), :id, :fullname, include_blank: true %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
