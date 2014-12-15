@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Dosis:400,700,800' rel='stylesheet' type='text/css'>
+	<style>
+		body {
+			background-color: #D6F5FF;
+			font-family: 'Josefin Sans', sans-serif;
+		}
+		.well {
+			background-color: #FAFAFF;
+			border-radius: 10px;
+		}
+		.glyphicon-user {
+			font-size: 1.8em;
+		}
+		.user {
+			margin-left: 20px;
+		}
+		.tally {
+			font-family: 'Dosis', sans-serif;
+			font-size: 1.5em;
+			font-style: bold;
+			margin-top: auto;
+			margin-bottom: auto;
+			margin-right: 10px;
+			margin-left: 10px;
+		}
+		.feed {
+			background-color: white;
+			border-radius: 15px;
+			padding: 20px;
+		}
+		.navbar {
+			font-size: 1.2em;
+		}
+		.button-div {
+			text-align: center;
+		}
+		.buttonz {
+			padding: 10px 30px;
+			margin-top: 40px;
+			font-size: 1.4em;
+			border-radius: 0;
+		}
+		.support {
+			margin-right: 15%;
+		}
+		p {
+			text-align: center;
+			margin-top: 5px;
+		}
+		.rowspace {
+			margin-top: 15px;
+		}
+		img {
+			border-radius: 10px;
+		}
+		.smallimages {
+			height: 100px;
+		}
+		.margin-top-20 {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand tally" href="#">t</a>
+      <a class="navbar-brand" href="#">Tally</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+      	<li><a href="#">Signup</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">About</a></li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Account</a></li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </li> -->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container" id="container"></div>
+<div class="col-md-8">
+<div class="feed">
+<div class="well">
+	<div class="row rowspace">
+		<div class="col-md-3">
+			<img src="JoeBiden.jpg" class="img-responsive">
+			<p>Joe Biden (D)</p>
+		</div>
+		<div class="col-md-9">
+			<h2>Politician Does Something Something Something, Shocks Everyone</h2>
+			<div class="button-div"><a href="#" class="btn btn-lg btn-success buttonz support">Support</a><a href="#" class="btn btn-lg btn-danger buttonz">Oppose</a></div>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+	<div class="col-md-4">
+		<div class="feed">
+			<span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">User</span></span>
+			<h4>Total Contributions:</h4>
+			<h3>$5,000</h3>
+		</div>
+
+		<div class="feed margin-top-20">
+			<h3>Your Local Politicians</h3>
+			<div class="row">
+			<div class="col-sm-4">
+				<img src="TedCruz.jpg" class="img-responsive smallimages">
+			</div>
+			<div class="col-sm-8">
+				<h3>Ted Cruz</h3>
+				<h4>Amount Donated: $500</h4>
+				<h4>Percent Supported: 50%</h4>
+			</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</body>
+</html>
