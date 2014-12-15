@@ -12,6 +12,7 @@ class CreatePols < ActiveRecord::Migration
                   t.string :fax
                   t.string :fec_id
                   t.string :firstname
+                  t.string :fullname
                   t.string :gender
                   t.string :govtrack_id
                   t.boolean :in_office

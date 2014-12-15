@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141214235951) do
+ActiveRecord::Schema.define(version: 20141215222526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20141214235951) do
     t.string   "fax"
     t.string   "fec_id"
     t.string   "firstname"
+    t.string   "fullname"
     t.string   "gender"
     t.string   "govtrack_id"
     t.boolean  "in_office"
@@ -79,6 +80,7 @@ ActiveRecord::Schema.define(version: 20141214235951) do
     t.string   "nonce"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
 end

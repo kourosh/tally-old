@@ -1,12 +1,15 @@
 class PolsController < ApplicationController
   before_action :set_pol, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate
+  before_action :authenticate, except: [:index, :show]
 
   # GET /pols
   # GET /pols.json
   def index
     @pols = Pol.all
-    render json: @pols, status: 200
+    respond_to do |format|
+      format.html
+      format.json { render json: @pols, status: 200 }
+    end
   end
 
   # GET /pols/1
@@ -17,11 +20,6 @@ class PolsController < ApplicationController
       format.html
       format.json { render json: @pol }
     end
-  end
-
-  # GET /pols/new
-  def new
-    @pol = Pol.new
   end
 
   # GET /pols/1/edit

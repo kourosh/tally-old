@@ -1,7 +1,7 @@
 class Pol < ActiveRecord::Base
 	has_many :events
 	before_save :make_fullname
-	before_create :set_auth_token
+	# before_create :set_auth_token
 
 	def make_fullname
 		self.fullname = "#{firstname} #{lastname}"
