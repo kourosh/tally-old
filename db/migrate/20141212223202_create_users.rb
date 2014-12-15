@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.string :occupation
     	t.string :employer_name
     	t.boolean :unemployed_or_retired
+        t.string :nonce
 
       t.timestamps
     end
