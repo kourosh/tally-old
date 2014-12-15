@@ -5,10 +5,12 @@ gem 'simple_form', '~> 3.1.0'
 
 gem 'rails4-autocomplete'
 
+gem 'rails_12factor', group: :production
+
+gem 'pg'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
