@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141214235951) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: true do |t|
     t.string   "headline"
     t.string   "source"
@@ -60,14 +63,6 @@ ActiveRecord::Schema.define(version: 20141214235951) do
     t.string   "youtube_url"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "fullname"
-  end
-
-  create_table "search_suggestions", force: true do |t|
-    t.string   "term"
-    t.integer  "popularity"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
@@ -81,6 +76,7 @@ ActiveRecord::Schema.define(version: 20141214235951) do
     t.string   "occupation"
     t.string   "employer_name"
     t.boolean  "unemployed_or_retired"
+    t.string   "nonce"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
