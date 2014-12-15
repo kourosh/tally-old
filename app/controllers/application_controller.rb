@@ -4,9 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def confirgurebraintree
-    Braintree::Configuration.environment = :sandbox
-    Braintree::Configuration.merchant_id = "847dwb2bdvzhsd7s"
-    Braintree::Configuration.public_key = "7dvzjtcdgyzyts23"
-    Braintree::Configuration.private_key = "45e1ea9f9b99f05c33dfdb99f923632c"
+    Braintree::Configuration.environment = ENV["braintree_environment"]
+    Braintree::Configuration.merchant_id = ENV["braintree_merchant_id"]
+    Braintree::Configuration.public_key = ENV["braintree_public_key"]
+    Braintree::Configuration.private_key = ENV["braintree_private_key"]
   end
 end
