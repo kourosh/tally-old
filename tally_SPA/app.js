@@ -32,7 +32,7 @@
 
   //set up pols collection
   var Pols = Backbone.Collection.extend({
-    url: root_uri + "/pols"
+    url: root_uri + "/events"
   });
 
   //set up pol model
