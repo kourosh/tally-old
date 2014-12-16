@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :pols
   
+  post '/users/signup' => 'users#create', constraints: { subdomain: 'api' }
+
   post '/users/login' => 'users#attempt_login', constraints: { subdomain: 'api' }
 
 end

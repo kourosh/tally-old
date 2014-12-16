@@ -8,6 +8,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def attempt_login
+    @user = User.where(email: params[:user][:email], password: params[:user][:password]).first
+    respond_to do |format|
+      if @user
+        @user.set_auth_token
+        @user.save
+        format.json { render json: @user }
+      else
+        format.json { head :no_content, status: 404 }
+      end
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -25,7 +38,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
+    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
+    user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
+
+    @user = User.new(user_parameters)
 
     respond_to do |format|
       if @user.save
