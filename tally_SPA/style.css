@@ -1,59 +1,69 @@
 body {
-			background-color: #D6F5FF;
-			font-family: 'Josefin Sans', sans-serif;
-		}
-		.well {
-			background-color: #FAFAFF;
-			border-radius: 10px;
-		}
-		.glyphicon-user {
-			font-size: 1.8em;
-		}
-		.user {
-			margin-left: 20px;
-		}
-		.tally {
-			font-family: 'Dosis', sans-serif;
-			font-size: 1.5em;
-			font-style: bold;
-			margin-top: auto;
-			margin-bottom: auto;
-			margin-right: 10px;
-			margin-left: 10px;
-		}
-		.feed {
-			background-color: white;
-			border-radius: 15px;
-			padding: 20px;
-		}
-		.navbar {
-			font-size: 1.2em;
-		}
-		.button-div {
-			text-align: center;
-		}
-		.buttonz {
-			padding: 10px 30px;
-			margin-top: 40px;
-			font-size: 1.4em;
-			border-radius: 0;
-		}
-		.support {
-			margin-right: 15%;
-		}
-		p {
-			text-align: center;
-			margin-top: 5px;
-		}
-		.rowspace {
-			margin-top: 15px;
-		}
-		img {
-			border-radius: 10px;
-		}
-		.smallimages {
-			height: 100px;
-		}
-		.margin-top-20 {
-			margin-top: 20px;
-		}
+	background-color: #D6F5FF;
+	font-family: 'Josefin Sans', sans-serif;
+}
+.well {
+	background-color: #FAFAFF;
+	border-radius: 10px;
+}
+.glyphicon-user {
+	font-size: 1.8em;
+}
+.user {
+	margin-left: 20px;
+}
+.tally {
+	font-family: 'Dosis', sans-serif;
+	font-size: 1.5em;
+	font-style: bold;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.feed {
+	background-color: white;
+	border-radius: 15px;
+	padding: 20px;
+}
+.navbar {
+	font-size: 1.2em;
+}
+.button-div {
+	text-align: center;
+}
+.buttonz {
+	padding: 10px 30px;
+	margin-top: 40px;
+	font-size: 1.4em;
+	border-radius: 0;
+}
+.support {
+	margin-right: 15%;
+}
+p {
+	text-align: center;
+	margin-top: 5px;
+}
+.rowspace {
+	margin-top: 15px;
+}
+img {
+	border-radius: 10px;
+}
+.smallimages {
+	height: 100px;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+ .Polcenter {
+	 text-align: center;
+	 margin-bottom: 50px;
+}
+ .imgscoreboard {
+	 margin-left: auto;
+	 margin-right: auto;
+	 margin-top: 50px;
+	 border-radius: 10px;
+}

@@ -26,7 +26,7 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#signup">Signup</a></li>
+					<li><a href="#signup" data-toggle="modal" data-target="#myModal">Signup</a></li>
 					<li><a href="#login">Login</a></li>
 					<li><a href="#about">About</a></li>
 					<li class="dropdown">
@@ -44,22 +44,22 @@
 <div class="container" id="container"></div>
 <script id="event-feed" type="text/x-handlebars-template">
 	<div class="col-md-8">
-		{{#each Data}}
 		<div class="feed">
+		{{#each Data}}
 			<div class="well">
 				<div class="row rowspace">
 					<div class="col-md-3">
 						<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
-						<p>{{attributes.fullname}} ({{attributes.party}}) </p>
+						<p>{{attributes.title}}. {{attributes.fullname}}<br>({{attributes.party}}) {{attributes.state}}</p>
 					</div>
 					<div class="col-md-9">
-						<h2>{{events}} {{attributes.id}}</h2>
+						<h2><a href="{{attributes.source}}">{{attributes.headline}}</a></h2>
 						<div class="button-div"><a href="#" class="btn btn-lg btn-success buttonz support">Support</a><a href="#" class="btn btn-lg btn-danger buttonz">Oppose</a></div>
 					</div>
 				</div>
 			</div>
-		</div>
 		{{/each}}
+		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="feed">
@@ -87,7 +87,7 @@
 <script id="pol-scoreboard" type="text/x-handlebars-template">
 <div class="feed">
 	<div class="Polcenter">
-		<img src="../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg" class="img-responsive">
+		<img src="../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg" class="img-responsive imgscoreboard">
 		<h3>{{Data.bio.fullname}}</h3>
 		<h4>
 			{{#ifCond Data.bio.party "D"}}
@@ -123,9 +123,8 @@
 	{{/each}}
 </script>
 
-<script id="signup-modal" type="text/x-handlebars-template">
 <div class="container">
-	<div class="modal fade">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -173,8 +172,7 @@
 	    </div><!-- /.modal-content-->
 	  </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-</div> 
-</script>
+</div>
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="http://underscorejs.org/underscore-min.js"></script>
