@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @events = Event.all.includes(:pol)
     respond_to do |format|
       format.html
-      format.json { render json: @events, status: 200 }
+      format.json { render :index, status: 200 }
     end
   end
 
