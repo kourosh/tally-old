@@ -26,38 +26,40 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Signup</a></li>
-					<li><a href="#">Login</a></li>
-					<li><a href="#">About</a></li>
-        <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Settings</a></li>
-          </ul>
-        </li> -->
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
+					<li><a href="#signup">Signup</a></li>
+					<li><a href="#login">Login</a></li>
+					<li><a href="#about">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#account">Account</a></li>
+							<li><a href="#settings">Settings</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 
 <div class="container" id="container"></div>
 <script id="event-feed" type="text/x-handlebars-template">
 	<div class="col-md-8">
+		{{#each Data}}
 		<div class="feed">
 			<div class="well">
 				<div class="row rowspace">
 					<div class="col-md-3">
-						<img src="JoeBiden.jpg" class="img-responsive">
-						<p>Joe Biden (D)</p>
+						<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
+						<p>{{attributes.fullname}} ({{attributes.party}}) </p>
 					</div>
 					<div class="col-md-9">
-						<h2>Politician Does Something Something Something, Shocks Everyone</h2>
+						<h2>{{events}} {{attributes.id}}</h2>
 						<div class="button-div"><a href="#" class="btn btn-lg btn-success buttonz support">Support</a><a href="#" class="btn btn-lg btn-danger buttonz">Oppose</a></div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{{/each}}
 	</div>
 	<div class="col-md-4">
 		<div class="feed">
@@ -85,10 +87,22 @@
 <script id="pol-scoreboard" type="text/x-handlebars-template">
 <div class="feed">
 	<div class="Polcenter">
-		<img src="JoeBiden.jpg" class="img-responsive">
-		<h3>Joe Biden</h3>
-		<h4>Democrat</h4>
-		<h4>Vice President</h4>
+		<img src="../app/assets/images/200x250/{{Data.bioguide_id}}.jpg" class="img-responsive">
+		<h3>{{Data.fullname}}</h3>
+		<h4>
+			{{#ifCond Data.party "D"}}
+			  Democrat
+			{{else}}
+			  Republican
+			{{/ifCond}}
+		</h4>
+		<h4>
+			{{#ifCond Data.title "Rep"}}
+			  Representative
+			{{else}}
+			  Senator
+			{{/ifCond}}
+		</h4>
 	</div>
 
 
@@ -161,6 +175,11 @@
 </div> 
 </script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+<script src="http://backbonejs.org/backbone-min.js"></script>
+<script src="libraries/handlebars.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
