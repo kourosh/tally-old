@@ -8,7 +8,7 @@ class PolsController < ApplicationController
     @pols = Pol.includes(:events).all
     respond_to do |format|
       format.html
-      format.json { render json: @pols, status: 200 }
+      format.json 
     end
   end
 
@@ -18,7 +18,7 @@ class PolsController < ApplicationController
     @pol = Pol.includes(:events).find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render :show }
+      format.json { render :json => { bio: @pol, events: @pol.events } }
     end
   end
 
