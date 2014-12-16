@@ -1,5 +1,10 @@
 class Pol < ActiveRecord::Base
 	has_many :events
+
+	# def fullname
+	# 	"#{firstname} #{lastname}"
+	# end
+	
 	before_save :make_fullname
 	# before_create :set_auth_token
 
