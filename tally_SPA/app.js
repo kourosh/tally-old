@@ -71,6 +71,23 @@
     el: "#container",
 
     render: function() {
+      // $.ajax({
+      //   url: "https://congress.api.sunlightfoundation.com/legislators/locate?apikey=df81c6bfa0d64dd684ce4ca0435af8f8&latitude=42.96&longitude=-108.09",
+      //   type: "GET",
+      //   success: function(data) { 
+      //       var source = $("#event-feed").html();
+
+      //       var template = Handlebars.compile(source);
+
+      //       var html = template({Data: data});
+
+      //       $("#container").html(html);
+      //   },
+      //   error: function(jqXHR, textStatus, errorThrown) { 
+      //           alert("something went wrong getting lat lng pols");
+      //           console.log(errorThrown);
+      //       }
+      //   });
       pols.fetch({
         success: function() {
           compile_template("#event-feed", pols.models);

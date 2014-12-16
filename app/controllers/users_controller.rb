@@ -8,6 +8,19 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def attempt_login
+    @user = User.where(email: params[:user][:email], password: params[:user][:password]).first
+    respond_to do |format|
+      if @user
+        @user.set_auth_token
+        @user.save
+        format.json { render json: @user }
+      else
+        format.json { head :no_content, status: 404 }
+      end
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
@@ -30,7 +43,7 @@ class UsersController < ApplicationController
     user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
     @user = User.new(user_parameters)
-    
+
     respond_to do |format|
       if @user.save
         format.json { render :show, status: :created, location: @user }
