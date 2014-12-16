@@ -1,12 +1,20 @@
 source 'https://rubygems.org'
+
+
 gem "twitter-bootstrap-rails"
 
+# Makes cross-origin AJAX possible
+gem 'rack-cors', :require => 'rack/cors'
+
+# Forms
 gem 'simple_form', '~> 3.1.0'
 
+# Autocomplete for new event page (choosing politician)
 gem 'rails4-autocomplete'
 
 gem 'rails_12factor', group: :production
 
+# Postgres
 gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -19,7 +27,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-
+gem "geocoder"
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -39,14 +47,14 @@ group :test, :development do
 	gem "guard-rspec"
 	gem "rb-fsevent"
 	gem "factory_girl_rails"
+	gem "pry-rails"
+	gem "pry-byebug"
 end
 group :test do
 	gem "shoulda-matchers"
 end
 group :development do
 	gem "better_errors"
-	gem "pry-rails"
-	gem "pry-byebug"
 	gem "quiet_assets"
 	gem "awesome_print", require: "ap"
 end

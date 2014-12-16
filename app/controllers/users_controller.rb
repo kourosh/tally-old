@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     result = Braintree::Customer.create(
-      :payment_method_nonce => params[:nonce]
+      :payment_method_nonce => params[:nonce],
       :customer_id => @user.id
       )
     if result.success?
