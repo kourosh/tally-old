@@ -5,7 +5,7 @@ class PolsController < ApplicationController
   # GET /pols
   # GET /pols.json
   def index
-    @pols = Pol.all
+    @pols = Pol.all.includes(:event)
     respond_to do |format|
       format.html
       format.json { render json: @pols, status: 200 }
