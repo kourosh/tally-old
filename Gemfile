@@ -1,12 +1,20 @@
 source 'https://rubygems.org'
+
+
 gem "twitter-bootstrap-rails"
 
+# Makes cross-origin AJAX possible
+gem 'rack-cors', :require => 'rack/cors'
+
+# Forms
 gem 'simple_form', '~> 3.1.0'
 
+# Autocomplete for new event page (choosing politician)
 gem 'rails4-autocomplete'
 
 gem 'rails_12factor', group: :production
 
+# Postgres
 gem 'pg'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

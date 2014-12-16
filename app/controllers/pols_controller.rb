@@ -1,10 +1,15 @@
 class PolsController < ApplicationController
   before_action :set_pol, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:index, :show]
 
   # GET /pols
   # GET /pols.json
   def index
     @pols = Pol.all
+    respond_to do |format|
+      format.html
+      format.json { render json: @pols, status: 200 }
+    end
   end
 
   # GET /pols/1
@@ -15,11 +20,6 @@ class PolsController < ApplicationController
       format.html
       format.json { render json: @pol }
     end
-  end
-
-  # GET /pols/new
-  def new
-    @pol = Pol.new
   end
 
   # GET /pols/1/edit
@@ -77,4 +77,23 @@ class PolsController < ApplicationController
     def pol_params
       params.require(:pol).permit(:firstname, :lastname, :in_office)
     end
+
+  protected
+    def authenticate
+      authenticate_token || render_unauthorized
+    end
+
+    def authenticate_token
+      authenticate_or_request_with_http_token('posts') do |token, options|
+        User.find_by(auth_token: token)
+      end
+    end
+    
+    def render_unauthorized
+      self.headers['WWW-Authenticate'] = 'Token realm="posts"'
+      respond_to do |format|
+        format.json { render json: 'Bad credentials', status: 401 }
+      end
+    end
+
 end

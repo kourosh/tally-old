@@ -1,15 +1,25 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, except: [:index, :show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all.includes(:pol)
+    respond_to do |format|
+      format.html
+      format.json { render json: @events, status: 200 }
+    end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @event }
+    end
   end
 
   # GET /events/new
@@ -19,6 +29,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event = Event.find(params[:id])
   end
 
   # POST /events
@@ -71,4 +82,23 @@ class EventsController < ApplicationController
     def event_params
       params.require(:event).permit(:headline, :source, :pol_id)
     end
+
+  protected
+    def authenticate
+      authenticate_token || render_unauthorized
+    end
+    
+    def authenticate_token
+      authenticate_or_request_with_http_token('posts') do |token, options|
+        User.find_by(auth_token: token)
+      end
+    end
+    
+    def render_unauthorized
+      self.headers['WWW-Authenticate'] = 'Token realm="posts"'
+      respond_to do |format|
+        format.json { render json: 'Bad credentials', status: 401 }
+      end
+    end
+
 end
