@@ -16,7 +16,7 @@ gem 'rails_12factor', group: :production
 
 # Postgres
 gem 'pg'
-
+gem 'geokit-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.7'
 # Use SCSS for stylesheets

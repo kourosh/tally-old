@@ -2,10 +2,8 @@ class User < ActiveRecord::Base
 	before_create :set_auth_token
 	geocoded_by :full_street_address
 	after_validation :geocode
-
-	def full_street_address
-		self.full_street_address = "#{user_street_address} #{user_city}, #{user_state} #{user_zip}"
-	end
+  acts_as_mappable :lat_column_name => :latitude,
+                   :lng_column_name => :longitude
 
 	private
 
