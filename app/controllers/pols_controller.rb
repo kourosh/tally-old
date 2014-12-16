@@ -18,7 +18,7 @@ class PolsController < ApplicationController
     @pol = Pol.includes(:events).find(params[:id])
     respond_to do |format|
       format.html
-      format.json { render :show }
+      format.json { render :json => { bio: @pol, events: @pol.events } }
     end
   end
 
