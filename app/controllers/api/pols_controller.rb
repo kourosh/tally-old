@@ -1,6 +1,7 @@
-class PolsController < ApplicationController
-  before_action :set_pol, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, except: [:index, :show]
+module API
+  class PolsController < ApplicationController
+    before_action :set_pol, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate, except: [:index, :show]
 
   # GET /pols
   # GET /pols.json
@@ -78,7 +79,7 @@ class PolsController < ApplicationController
       params.require(:pol).permit(:firstname, :lastname, :in_office)
     end
 
-  protected
+    protected
     def authenticate
       authenticate_token || render_unauthorized
     end
@@ -95,5 +96,5 @@ class PolsController < ApplicationController
         format.json { render json: 'Bad credentials', status: 401 }
       end
     end
-
+  end
 end
