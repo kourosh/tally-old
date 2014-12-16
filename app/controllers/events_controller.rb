@@ -5,8 +5,6 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all.includes(:pol)
-   
-
   end
 
   # GET /events/1

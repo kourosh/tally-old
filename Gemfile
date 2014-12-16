@@ -39,14 +39,14 @@ group :test, :development do
 	gem "guard-rspec"
 	gem "rb-fsevent"
 	gem "factory_girl_rails"
+	gem "pry-rails"
+	gem "pry-byebug"
 end
 group :test do
 	gem "shoulda-matchers"
 end
 group :development do
 	gem "better_errors"
-	gem "pry-rails"
-	gem "pry-byebug"
 	gem "quiet_assets"
 	gem "awesome_print", require: "ap"
 end
