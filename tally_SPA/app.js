@@ -111,7 +111,7 @@
   });
 
   router.on("route:redirect", function() {
-    router.navigate("home")
+    router.navigate("home", {trigger: true})
   });
 
   router.on("route:index", function() {
