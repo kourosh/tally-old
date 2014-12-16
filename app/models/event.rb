@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
 	belongs_to :pol
-	before_create :set_auth_token
+	# before_create :set_auth_token
 
 	def pol_fullname
 		pol.try(:fullname)

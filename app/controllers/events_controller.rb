@@ -1,17 +1,25 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate
+  before_action :authenticate, except: [:index, :show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all.includes(:pol)
-    render json: @events, status: 200
+    respond_to do |format|
+      format.html
+      format.json { render json: @events, status: 200 }
+    end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json { render json: @event }
+    end
   end
 
   # GET /events/new
@@ -21,6 +29,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    @event = Event.find(params[:id])
   end
 
   # POST /events
