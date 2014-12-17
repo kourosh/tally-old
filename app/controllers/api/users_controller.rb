@@ -10,14 +10,15 @@ module API
   end
 
   def attempt_login
-    @user = User.where(email: params[:user][:email], password: params[:user][:password]).first
+    user = User.where(email: params[:user][:email]).first
+    user_auth = user.authenticate(params[:user][:password])
     respond_to do |format|
-      if @user
-        @user.set_auth_token
-        @user.save
-        format.json { render json: @user }
+      if user_auth
+        user_auth.set_auth_token
+        user_auth.save
+        format.json { render json: user_auth, status: :ok }
       else
-        format.json { head :no_content, status: 404 }
+        format.json { head :no_content }
       end
     end
   end
