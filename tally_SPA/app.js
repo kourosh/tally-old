@@ -172,7 +172,7 @@
           sessionStorage.setItem("auth_token", data.auth_token);
           sessionStorage.setItem("user_id", data.id);
           router.navigate('/', {trigger: false});
-          router.navigate('posts', {trigger: true});
+          router.navigate('/', {trigger: true});
         },
         error: function() {
           alert("Something went wrong adding a user");
@@ -195,7 +195,7 @@
           sessionStorage.setItem("auth_token", user.auth_token);
           sessionStorage.setItem("user_id", user.id);
           router.navigate('/', {trigger: false});
-          router.navigate('posts', {trigger: true});
+          router.navigate('/', {trigger: true});
         },
         error: function() {
           alert("Something went wrong signing in");
