@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Dosis:400,700,800' rel='stylesheet' type='text/css'>
+	<link href="style.css" rel="stylesheet" type='text/css'>
+	<style>
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand tally" href="#">t</a>
+				<a class="navbar-brand" href="#">Tally</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#signup" data-toggle="modal" data-target="#create-account-modal">Signup</a></li>
+					<li><a href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
+					<li><a href="#about">About</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#account">Account</a></li>
+							<li><a href="#settings">Settings</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+<div class="container" id="container"></div>
+<script id="event-feed" type="text/x-handlebars-template">
+	<div class="col-md-8">
+		<div class="feed">
+		{{#each Data}}
+			<div class="well">
+				<div class="row rowspace">
+					<div class="col-md-3">
+						<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
+						<p><a href="#pol/{{id}}">{{attributes.title}}. {{attributes.fullname}}</a><br>({{attributes.party}}) {{attributes.state}}</p>
+					</div>
+					<div class="col-md-9">
+						<h2><a href="{{attributes.source}}">{{attributes.headline}}</a></h2>
+						<div class="button-div"><a href="#" class="btn btn-lg btn-success buttonz support">Support</a><a href="#" class="btn btn-lg btn-danger buttonz">Oppose</a></div>
+					</div>
+				</div>
+			</div>
+		{{/each}}
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="feed">
+			<span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">User</span></span>
+			<h4>Total Contributions:</h4>
+			<h3>$5,000</h3>
+		</div>
+
+		<div class="feed margin-top-20">
+			<h3>Your Local Politicians</h3>
+			<div class="row">
+				<div class="col-sm-4">
+					<img src="TedCruz.jpg" class="img-responsive smallimages">
+				</div>
+				<div class="col-sm-8">
+					<h3>Ted Cruz</h3>
+					<h4>Amount Donated: $500</h4>
+					<h4>Percent Supported: 50%</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script id="pol-scoreboard" type="text/x-handlebars-template">
+<div class="feed">
+	<div class="Polcenter">
+		<img src="../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg" class="img-responsive imgscoreboard">
+		<h3>{{Data.bio.fullname}}</h3>
+		<h4>
+			{{#ifCond Data.bio.party "D"}}
+			  Democrat
+			{{else}}
+			  Republican
+			{{/ifCond}}
+		</h4>
+		<h4>
+			{{#ifCond Data.bio.title "Rep"}}
+			  Representative
+			{{else}}
+			  Senator
+			{{/ifCond}}
+		</h4>
+	</div>
+
+	{{#each Data.events}}
+	<h2><a href="{{source}}">{{headline}}</a></h2>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<h3>Support</h3>
+			<h4>$10,000</h4>
+		</div>
+		<div class="col-md-6"></div>
+		<div class="col-md-2">
+			<h3>Oppose</h3>
+			<h4>$5,000</h4>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	{{/each}}
+</script>
+
+<div class="container">
+	<div class="modal fade" id="create-account-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Sign Up!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form role="form">
+					  <div class="form-group">
+					    <label for="add-email">Email address</label>
+					    <input type="email" class="form-control" id="add-email" placeholder="Enter email">
+					  </div>
+					  <div class="form-group">
+					  	<label for="add-firstname">First Name</label>
+					    <input type="text" class="form-control" id="add-firstname" placeholder="First Name">
+					    <label for="add-lastname">Last Name</label>
+					    <input type="text" class="form-control" id="add-lastname" placeholder="Last Name">
+					  </div>
+					   <div class="form-group">
+					  	<label for="address">Address</label>
+					    <input type="text" class="form-control" id="add-street" placeholder="Street Address">
+					    <input type="text" class="form-control" id="add-city" placeholder="City">
+					    <input type="text" class="form-control" id="add-state" placeholder="State">
+					    <input type="text" class="form-control" id="add-zip" placeholder="Zip">
+					  </div>
+					  <div class="form-group">
+					  	<label for="phone">Phone</label>
+					    <input type="text" class="form-control" id="add-phone" placeholder="Phone Number">
+					  </div>
+					  <div class="form-group">
+					  	<label for="job">Job</label>
+					    <input type="text" class="form-control" id="add-position" placeholder="Position">
+					    <input type="text" class="form-control" id="add-employer" placeholder="Employer">
+					  </div>
+					  <div class="form-group">
+					  	<label for="unemployed-or-retired">Unemployed or Retired</label>
+					  	<input id="add-unemployed-or-retired" type="checkbox">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputPassword1">Password</label>
+					    <input type="password" class="form-control" id="add-password" placeholder="Password">
+					  </div>
+					</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="signup" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div><!-- /.modal-content-->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title">Log In!</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form role="form">
+					  <div class="form-group">
+					    <label for="add-email">Email address</label>
+					    <input type="email" class="form-control" id="check-email" placeholder="Enter email">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleInputPassword1">Password</label>
+					    <input type="password" class="form-control" id="check-password" placeholder="Password">
+					  </div>
+					</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" id="login" class="btn btn-primary">Submit</button>
+	      </div>
+	    </div><!-- /.modal-content-->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="http://underscorejs.org/underscore-min.js"></script>
+<script src="http://backbonejs.org/backbone-min.js"></script>
+<script src="libraries/handlebars.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

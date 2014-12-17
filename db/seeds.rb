@@ -842,7 +842,8 @@ Pol.create(:firstname => 'Ted', :bioguide_id => 'Y000065', :birthdate => '4/13/5
 Pol.create(:firstname => 'Willard', :bioguide_id => '', :birthdate => '3/12/47', :district => '', :title => '', :party => 'R', :state => '')
 
 
-Event.create(:headline => 'Sen. Mark Kirk is only Republican to vote to confirm new surgeon general', :source => 'http://www.huffingtonpost.com/2014/12/15/surgeon-general-vote_n_6329884.html', :pol_id => '3875')
-Event.create(:headline => 'Rep. Grijalva spearheads demand to Obama administration to protect LGBT immigrant children', :source => 'http://www.huffingtonpost.com/2014/12/15/lgbt-immigrant-minors_n_6327310.html', :pol_id => '3755')
-Event.create(:headline => 'Sen. Warren continues to fight against treasury undersecretary nomination', :source => 'http://www.politico.com/story/2014/12/antonio-weiss-barack-obama-white-house-elizabeth-warren-113568.html?hp=l1_3', :pol_id => '4288')
-Event.create(:headline => 'Pres. Obama drops sanctions against Cuba, normalizes relations after 50 years of hostility', :source => 'http://www.nytimes.com', :pol_id => '4297')
+Pol.find(1).events << Event.create(:headline => 'Rep. Grijalva spearheads demand to Obama administration to protect LGBT immigrant children', :source => 'http://www.huffingtonpost.com/2014/12/15/lgbt-immigrant-minors_n_6327310.html', :pol_id => '1')
+Pol.find(2).events << Event.create(:headline => 'Sen. Warren continues to fight against treasury undersecretary nomination', :source => 'http://www.politico.com/story/2014/12/antonio-weiss-barack-obama-white-house-elizabeth-warren-113568.html?hp=l1_3', :pol_id => '2')
+Pol.find(3).events << Event.create(:headline => 'Pres. Obama drops sanctions against Cuba, normalizes relations after 50 years of hostility', :source => 'http://www.nytimes.com', :pol_id => '3')
+Pol.find(4).events << Event.create(:headline => 'Sen. Mark Kirk is only Republican to vote to confirm new surgeon general', :source => 'http://www.huffingtonpost.com/2014/12/15/surgeon-general-vote_n_6329884.html', :pol_id => '4')
+
