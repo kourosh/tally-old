@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :transactions
+
 	namespace :api, path: 'api/' do
    resources :events, :search_suggestions, :users, :pols
   end

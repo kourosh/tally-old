@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+	has_many :events, through: :transactions
+	has_many :transactions
+
 	before_create :set_auth_token
 	# geocoded_by :full_street_address
 	# after_validation :geocode
