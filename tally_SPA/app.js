@@ -139,4 +139,68 @@
 
   Backbone.history.start();
 
+  getEmploymentStatus = function() {
+    if ($("#add-unemployed-or-retired").is(':checked')) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+
+  $(document).on("click", "#signup", function(){
+      $.ajax({
+        url: root_uri + "/users",
+        type: "POST",
+        data: {
+          user: {
+            email: $("#add-email").val(),
+            user_first_name: $("#add-firstname").val(),
+            user_last_name: $("#add-lastname").val(),
+            user_street_address: $("#add-street").val(),
+            user_city: $("#add-city").val(),
+            user_state: $("#add-state").val(),
+            user_zip: $("#add-zip").val(),
+            user_phone: $("#add-phone").val(),
+            occupation: $("#add-position").val(),
+            employer_name: $("#add-eployer").val(),
+            unemployed_or_retired: getEmploymentStatus(),
+            password: $("#add-password").val()
+          }
+        },
+        success: function(data){
+          $("#create-account-modal").modal("hide");
+          sessionStorage.setItem("auth_token", data.auth_token);
+          sessionStorage.setItem("user_id", data.id);
+          router.navigate('/', {trigger: false});
+          router.navigate('posts', {trigger: true});
+        },
+        error: function() {
+          alert("Something went wrong adding a user");
+        }
+      });
+    });
+
+   $(document).on("click", "#login", function(){
+      $.ajax({
+        url: root_uri + "/users/login",
+        type: "POST",
+        data: {
+          user: {
+            email: $("#check-email").val(),
+            password: $("#check-password").val()
+          }
+        },
+        success: function(user){
+          $("#login-modal").modal("hide");
+          sessionStorage.setItem("auth_token", user.auth_token);
+          sessionStorage.setItem("user_id", user.id);
+          router.navigate('/', {trigger: false});
+          router.navigate('posts', {trigger: true});
+        },
+        error: function() {
+          alert("Something went wrong signing in");
+        }
+      });
+    });
+
 // });
