@@ -10,14 +10,15 @@ module API
   end
 
   def attempt_login
-    @user = User.where(email: params[:user][:email], password: params[:user][:password]).first
+    user = User.where(email: params[:user][:email]).first
+    user_auth = user.authenticate(params[:user][:password])
     respond_to do |format|
-      if @user
-        @user.set_auth_token
-        @user.save
-        format.json { render json: @user }
+      if user_auth
+        user_auth.set_auth_token
+        user_auth.save
+        format.json { render json: user_auth, status: :ok }
       else
-        format.json { head :no_content, status: 404 }
+        format.json { head :no_content }
       end
     end
   end
@@ -39,12 +40,12 @@ module API
   # POST /users
   # POST /users.json
   def create
-    # full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
-    # geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
-    # user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
+    full_street_address = params[:user][:user_street_address] + ", " + params[:user][:user_city] + ", " + params[:user][:user_state] + " " + params[:user][:user_zip]
+    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
+    user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
-    # @user = User.new(user_parameters)
-    @user = User.new(user_params)
+    @user = User.new(user_parameters)
+    # @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
@@ -62,7 +63,7 @@ module API
     #   :payment_method_nonce => params[:nonce],
     #   :customer_id => @user.id
     #   )
-    if result.success?
+    # if result.success?
       respond_to do |format|
         if @user.update(user_params)
           format.json { render :show, status: :ok, location: @user }
@@ -70,9 +71,9 @@ module API
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-    else
-      p result.errors
-    end
+    # else
+    #   p result.errors
+    # end
   end
 
   # DELETE /users/1
