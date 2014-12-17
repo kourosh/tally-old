@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 	namespace :api, path: 'api/' do
   	resources :events, :search_suggestions, :users, :pols
+
 	end
 
   namespace :admin do 
@@ -13,9 +14,8 @@ Rails.application.routes.draw do
 
     resources :pols
   end
-  
-  post '/users/signup' => 'users#create'
 
-  post '/users/login' => 'users#attempt_login'
-  
+  post '/api/users/signup' => 'api/users#create'
+
+  post '/api/users/login' => 'api/users#attempt_login'
 end
