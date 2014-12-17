@@ -8,7 +8,7 @@ module API
   def index
     @pols = Pol.includes(:events).all
     respond_to do |format|
-      format.html
+      format.json 
     end
   end
 
@@ -17,7 +17,7 @@ module API
   def show
     @pol = Pol.includes(:events).find(params[:id])
     respond_to do |format|
-      format.html
+      format.json { render :json => { bio: @pol, events: @pol.events } }
     end
   end
 
@@ -33,9 +33,9 @@ module API
 
     respond_to do |format|
       if @pol.save
-        format.html { redirect_to @pol, notice: 'Successfully created politician.' }
+        format.json { render :show, status: :created, location: @pol }
       else
-        format.html { render :new }
+        format.json { render json: @pol.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -45,9 +45,9 @@ module API
   def update
     respond_to do |format|
       if @pol.update(pol_params)
-        format.html { redirect_to @pol, notice: 'Successfully updated politician.' }
+        format.json { render :show, status: :ok, location: @pol }
       else
-        format.html { render :edit }
+        format.json { render json: @pol.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,7 +57,7 @@ module API
   def destroy
     @pol.destroy
     respond_to do |format|
-      format.html { redirect_to pols_url, notice: 'Politician was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
