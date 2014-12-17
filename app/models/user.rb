@@ -1,9 +1,9 @@
 class User < ActiveRecord::Base
 	before_create :set_auth_token
-	geocoded_by :full_street_address
-	after_validation :geocode
-	acts_as_mappable :lat_column_name => :latitude,
-	:lng_column_name => :longitude
+	# geocoded_by :full_street_address
+	# after_validation :geocode
+	# acts_as_mappable :lat_column_name => :latitude,
+	# :lng_column_name => :longitude
 	has_secure_password
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
