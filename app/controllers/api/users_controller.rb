@@ -1,7 +1,7 @@
 module API
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :confirgurebraintree, only: [:new, :create]
+    # before_action :confirgurebraintree, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -39,15 +39,16 @@ module API
   # POST /users
   # POST /users.json
   def create
-    full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
-    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
-    user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
+    # full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
+    # geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
+    # user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
-    @user = User.new(user_parameters)
+    # @user = User.new(user_parameters)
+    @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
-        format.json { render :show, status: :created, location: @user }
+        format.json { render :show, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -57,10 +58,10 @@ module API
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    result = Braintree::Customer.create(
-      :payment_method_nonce => params[:nonce],
-      :customer_id => @user.id
-      )
+    # result = Braintree::Customer.create(
+    #   :payment_method_nonce => params[:nonce],
+    #   :customer_id => @user.id
+    #   )
     if result.success?
       respond_to do |format|
         if @user.update(user_params)
