@@ -48,7 +48,7 @@ module API
 
     respond_to do |format|
       if @user.save
-        format.json { render :show, status: :created, location: @user }
+        format.json { render :show, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
