@@ -9,7 +9,7 @@ module API
   def index
     @events = Event.includes(:pol).all
     respond_to do |format|
-      format.json { render :index, status: 200 }
+      format.html
     end
   end
 
@@ -18,7 +18,7 @@ module API
   def show
     @event = Event.find(params[:id])
     respond_to do |format|
-      format.json { render json: @event }
+      format.html
     end
   end
 
@@ -39,9 +39,9 @@ module API
 
     respond_to do |format|
       if @event.save
-        format.json { render :show, status: :created, location: @event }
+        format.html { redirect_to :back, notice: 'Event was successfully created.' }
       else
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render :new }
       end
     end
   end
@@ -51,9 +51,9 @@ module API
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.json { render :show, status: :ok, location: @event }
+        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
       else
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+        format.html { render :edit }
       end
     end
   end
@@ -63,7 +63,7 @@ module API
   def destroy
     @event.destroy
     respond_to do |format|
-      format.json { head :no_content }
+      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
     end
   end
 
