@@ -4,10 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception,
 	if: Proc.new { |c| c.request.format =~ %r{application/json} }
 
-  # def confirgurebraintree
-  #   Braintree::Configuration.environment = ENV["braintree_environment"]
-  #   Braintree::Configuration.merchant_id = ENV["braintree_merchant_id"]
-  #   Braintree::Configuration.public_key = ENV["braintree_public_key"]
-  #   Braintree::Configuration.private_key = ENV["braintree_private_key"]
-  # end
+  def confirgurebraintree
+    Braintree::Configuration.environment = ENV["braintree_environment"]
+    Braintree::Configuration.merchant_id = ENV["braintree_merchant_id"]
+    Braintree::Configuration.public_key = ENV["braintree_public_key"]
+    Braintree::Configuration.private_key = ENV["braintree_private_key"]
+  end
 end
