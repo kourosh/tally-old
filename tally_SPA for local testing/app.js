@@ -7,6 +7,9 @@
     $("#container").html(html);
   };
 
+  braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
+    container: "checkout"
+  });
   //set up the routes
   var Router = Backbone.Router.extend({
     routes: {

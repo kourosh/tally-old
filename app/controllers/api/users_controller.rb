@@ -1,7 +1,7 @@
 module API
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    # before_action :confirgurebraintree, only: [:new, :create]
+    before_action :confirgurebraintree, only: :create
 
   # GET /users
   # GET /users.json
@@ -10,6 +10,7 @@ module API
   end
 
   def attempt_login
+    
     user = User.where(email: params[:user][:email]).first
     user_auth = user.authenticate(params[:user][:password])
     respond_to do |format|
@@ -26,11 +27,6 @@ module API
   # GET /users/1
   # GET /users/1.json
   def show
-  end
-
-  # GET /users/new
-  def new
-    @user = User.new
   end
 
   # GET /users/1/edit
@@ -59,10 +55,10 @@ module API
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    # result = Braintree::Customer.create(
-    #   :payment_method_nonce => params[:nonce],
-    #   :customer_id => @user.id
-    #   )
+    result = Braintree::Customer.create(
+      :payment_method_nonce => params[:nonce],
+      :customer_id => @user.id
+      )
     # if result.success?
       respond_to do |format|
         if @user.update(user_params)
