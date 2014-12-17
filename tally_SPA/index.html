@@ -50,7 +50,7 @@
 				<div class="row rowspace">
 					<div class="col-md-3">
 						<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
-						<p>{{attributes.title}}. {{attributes.fullname}}<br>({{attributes.party}}) {{attributes.state}}</p>
+						<p><a href="#pol/{{id}}">{{attributes.title}}. {{attributes.fullname}}</a><br>({{attributes.party}}) {{attributes.state}}</p>
 					</div>
 					<div class="col-md-9">
 						<h2><a href="{{attributes.source}}">{{attributes.headline}}</a></h2>
@@ -106,7 +106,7 @@
 	</div>
 
 	{{#each Data.events}}
-	<h2>{{headline}}</h2>
+	<h2><a href="{{source}}">{{headline}}</a></h2>
 	<div class="row">
 		<div class="col-md-1"></div>
 		<div class="col-md-2">
