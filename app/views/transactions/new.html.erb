@@ -1,0 +1,5 @@
+<h1>Confirm:</h1>
+<p>I want to give $5 to <%= %>'s re-election committee.</p>
+<p><%= button_to "Confirm", transactions_path, :method => "get" %> <%= button_to "Cancel", 'Back', :method => "get" %></p>
+
+<%= link_to 'Back', transactions_path %>
