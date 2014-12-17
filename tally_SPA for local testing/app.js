@@ -1,15 +1,14 @@
 // $(document).ready(function() {
   // render handlebars template
-  var compile_template = function(id, data) {
-    var source   = $(id).html(),
-    template = Handlebars.compile(source),
-    html = template({Data: data});
-    $("#container").html(html);
+  var compile_template = function($template_el, $container_el, data) {
+    var source   = $template_el.html(),
+        template = Handlebars.compile(source),
+        html     = template({Data: data});
+
+    $container_el.html(html);
   };
 
-  // braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
-  //   container: "checkout"
-  // });
+
   //set up the routes
   var Router = Backbone.Router.extend({
     routes: {
@@ -71,34 +70,55 @@
 
   //set up post list view
   var AllPols = Backbone.View.extend({
-    el: "#container",
+    el: "#event-feed-container",
 
     render: function() {
-      // $.ajax({
-      //   url: "https://congress.api.sunlightfoundation.com/legislators/locate?apikey=df81c6bfa0d64dd684ce4ca0435af8f8&latitude=42.96&longitude=-108.09",
-      //   type: "GET",
-      //   success: function(data) { 
-      //       var source = $("#event-feed").html();
-
-      //       var template = Handlebars.compile(source);
-
-      //       var html = template({Data: data});
-
-      //       $("#container").html(html);
-      //   },
-      //   error: function(jqXHR, textStatus, errorThrown) { 
-      //           alert("something went wrong getting lat lng pols");
-      //           console.log(errorThrown);
-      //       }
-      //   });
+      var that = this;
       pols.fetch({
         success: function() {
-          compile_template("#event-feed", pols.models);
+          compile_template($("#event-feed"), that.$el, pols.models);
           console.log(pols.models)
         }
       });
     }
   });
+
+  var LocalPols = Backbone.View.extend({
+    el: "#local-pol-container",
+
+    render: function() {
+      var that = this;
+      $.ajax({
+        url: "https://congress.api.sunlightfoundation.com/legislators/locate?apikey=df81c6bfa0d64dd684ce4ca0435af8f8&latitude="+sessionStorage.getItem("lat")+"&longitude="+sessionStorage.getItem("lng"),
+        type: "GET",
+        success: function(data) { 
+          console.log(data);
+          compile_template($("#local-politicians"), that.$el, data.results);
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+                alert("something went wrong getting lat lng pols");
+                console.log(errorThrown);
+            }
+        });
+    }
+  });
+
+  var UserBalance = Backbone.View.extend({
+    el: "#users-balance",
+
+    render: function(id) {
+      var that = this;
+      var user = new User({
+        id: id
+      })
+      user.fetch({
+        success: function(data) {
+          console.log(data);
+          compile_template($("#user-balance"), that.$el, data);
+        }
+      })
+    }
+  })
 
   Handlebars.registerHelper('ifCond', function(v1, v2, options) {
     if(v1 === v2) {
@@ -135,8 +155,12 @@
   });
 
   router.on("route:index", function() {
-    var allpols = new AllPols()
-    allpols.render()
+    var allpols = new AllPols();
+    allpols.render();
+    var userbalance = new UserBalance();
+    userbalance.render(sessionStorage.getItem("user_id"));
+    var localpols = new LocalPols();
+    localpols.render();
     // Need Pols events here
   });
 
@@ -175,6 +199,8 @@
           $("#create-account-modal").modal("hide");
           sessionStorage.setItem("auth_token", data.auth_token);
           sessionStorage.setItem("user_id", data.id);
+          sessionStorage.setItem("lat", data.latitude);
+          sessionStorage.setItem("lng", data.longitude);
           $("#payment-info-modal").modal("show")
           // router.navigate('/', {trigger: false});
           // router.navigate('/', {trigger: true});
@@ -200,6 +226,8 @@
           $("#login-modal").modal("hide");
           sessionStorage.setItem("auth_token", user.auth_token);
           sessionStorage.setItem("user_id", user.id);
+          sessionStorage.setItem("lat", user.latitude);
+          sessionStorage.setItem("lng", user.longitude);
           router.navigate('/', {trigger: false});
           router.navigate('/', {trigger: true});
         },
