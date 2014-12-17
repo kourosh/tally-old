@@ -1,4 +1,4 @@
-module API
+
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
     before_action :confirgurebraintree, only: [:new, :create]
@@ -94,4 +94,3 @@ module API
       params.require(:user).permit(:email, :user_first_name, :user_last_name, :user_street_address, :user_city, :user_state, :user_zip, :user_phone, :occupation, :employer_name, :unemployed_or_retired, :password)
     end
   end
-end
