@@ -7,6 +7,9 @@
     $("#container").html(html);
   };
 
+  // braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
+  //   container: "checkout"
+  // });
   //set up the routes
   var Router = Backbone.Router.extend({
     routes: {
@@ -171,8 +174,10 @@
           $("#create-account-modal").modal("hide");
           sessionStorage.setItem("auth_token", data.auth_token);
           sessionStorage.setItem("user_id", data.id);
-          router.navigate('/', {trigger: false});
-          router.navigate('/', {trigger: true});
+          
+          $("#payment-info-modal").modal("show")
+          // router.navigate('/', {trigger: false});
+          // router.navigate('/', {trigger: true});
         },
         error: function() {
           alert("Something went wrong adding a user");
