@@ -4,15 +4,13 @@ Rails.application.routes.draw do
   	resources :events, :search_suggestions, :users, :pols
 	end
 
-  namespace :admin do 
-    resources :events
+  resources :events
 
-    resources :search_suggestions, except: [:new, :edit]
+  resources :search_suggestions, except: [:new, :edit]
 
-    resources :users, except: [:new, :edit]
+  resources :users, except: [:new, :edit]
 
-    resources :pols
-  end
+  resources :pols
   
   post '/users/signup' => 'users#create'
 
