@@ -191,6 +191,7 @@
           }
         },
         success: function(user){
+          console.log(user);
           $("#login-modal").modal("hide");
           sessionStorage.setItem("auth_token", user.auth_token);
           sessionStorage.setItem("user_id", user.id);
