@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
 
 
 	def set_auth_token
-		return if auth_token.present?
 		self.auth_token = generate_auth_token
 	end
 	private
