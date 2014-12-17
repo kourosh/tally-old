@@ -1,4 +1,4 @@
-module API
+
   class PolsController < ApplicationController
     before_action :set_pol, only: [:show, :edit, :update, :destroy]
     before_action :authenticate, except: [:index, :show]
@@ -90,4 +90,4 @@ module API
       end
     end
   end
-end
+
