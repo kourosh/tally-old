@@ -1,7 +1,7 @@
 module API
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :confirgurebraintree, only: :create
+    before_action :confirgurebraintree, only: [:create, :index, :show]
 
   # GET /users
   # GET /users.json
@@ -41,13 +41,9 @@ module API
     user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
     @user = User.new(user_parameters)
-    # @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
-        @client_token = Braintree::ClientToken.generate(
-          :customer_id => @user.id
-        )
         format.json { render :show, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -58,11 +54,6 @@ module API
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    result = Braintree::Customer.create(
-      :payment_method_nonce => params[:nonce],
-      :customer_id => @user.id
-      )
-    # if result.success?
       respond_to do |format|
         if @user.update(user_params)
           format.json { render :show, status: :ok, location: @user }
@@ -70,9 +61,6 @@ module API
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
-    # else
-    #   p result.errors
-    # end
   end
 
   # DELETE /users/1
