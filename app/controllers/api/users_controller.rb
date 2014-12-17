@@ -1,7 +1,7 @@
 module API
   class UsersController < ApplicationController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-    before_action :confirgurebraintree, only: [:new, :create]
+    # before_action :confirgurebraintree, only: [:new, :create]
 
   # GET /users
   # GET /users.json
@@ -57,10 +57,10 @@ module API
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    result = Braintree::Customer.create(
-      :payment_method_nonce => params[:nonce],
-      :customer_id => @user.id
-      )
+    # result = Braintree::Customer.create(
+    #   :payment_method_nonce => params[:nonce],
+    #   :customer_id => @user.id
+    #   )
     if result.success?
       respond_to do |format|
         if @user.update(user_params)
