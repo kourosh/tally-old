@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	after_validation :geocode
 	acts_as_mappable :lat_column_name => :latitude,
 	:lng_column_name => :longitude
+	has_secure_password
 
 	validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
