@@ -45,6 +45,9 @@ module API
 
     respond_to do |format|
       if @user.save
+        @client_token = Braintree::ClientToken.generate(
+          :customer_id => @user.id
+        )
         format.json { render :show, status: :created }
       else
         format.json { render json: @user.errors, status: :unprocessable_entity }

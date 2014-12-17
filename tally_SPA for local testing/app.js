@@ -7,9 +7,9 @@
     $("#container").html(html);
   };
 
-  braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
-    container: "checkout"
-  });
+  // braintree.setup("CLIENT-TOKEN-FROM-SERVER", "dropin", {
+  //   container: "checkout"
+  // });
   //set up the routes
   var Router = Backbone.Router.extend({
     routes: {
@@ -171,6 +171,7 @@
           }
         },
         success: function(data){
+          console.log(data);
           $("#create-account-modal").modal("hide");
           sessionStorage.setItem("auth_token", data.auth_token);
           sessionStorage.setItem("user_id", data.id);
