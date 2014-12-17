@@ -39,11 +39,12 @@ module API
   # POST /users
   # POST /users.json
   def create
-    full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
-    geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
-    user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
+    # full_street_address = params[:user_street_address] + ", " + params[:user_city] + ", " + params[:user_state] + " " + params[:user_zip]
+    # geocode_results = Geokit::Geocoders::GoogleGeocoder.geocode(full_street_address)
+    # user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
-    @user = User.new(user_parameters)
+    # @user = User.new(user_parameters)
+    @user = User.new(user_params)
 
     respond_to do |format|
       if @user.save
