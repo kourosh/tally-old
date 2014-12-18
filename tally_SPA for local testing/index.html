@@ -75,9 +75,7 @@
 
 <script id="user-balance" type="text/x-handlebars-template">
 	<div class="feed side well">
-		<span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">{{Data.attributes.user_first_name}}</span></span>
-		<h4>Balance:</h4>
-		<h3>${{Data.attributes.balance}}</h3>
+		<h5><span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">{{Data.attributes.user_first_name}} <small>Balance: ${{Data.attributes.balance}}</small></h5></span></span>
 	</div>
 </script>
 
@@ -86,13 +84,13 @@
 		<h3>Your Local Politicians</h3>
 		{{#each Data}}
 			<div class="row">
-				<div class="col-sm-4">
+				<div class="col-sm-4 margin-top-20">
 					<img src="../app/assets/images/200x250/{{bioguide_id}}.jpg" class="img-responsive smallimages">
 				</div>
 				<div class="col-sm-8">
 					<h3>{{first_name}} {{last_name}}</h3>
-					<h4>Amount Donated: $500</h4>
-					<h4>Percent Supported: 50%</h4>
+
+
 				</div>
 			</div>
 		{{/each}}
