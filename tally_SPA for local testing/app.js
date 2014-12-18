@@ -101,8 +101,9 @@
           window.location.href = "#home"
           that.undelegateEvents();
         },
-        error: function(jqXHR, textStatus, errorThrown) { 
-          alert("voting");
+        error: function(jqXHR, textStatus, errorThrown) {
+          $("#create-account-modal").modal("show");
+          that.undelegateEvents();
           console.log(errorThrown);
         }
       });
@@ -122,8 +123,9 @@
           window.location.href = "#home"
           that.undelegateEvents();
         },
-        error: function(jqXHR, textStatus, errorThrown) { 
-          alert("voting");
+        error: function(jqXHR, textStatus, errorThrown) {
+          $("#create-account-modal").modal("show");
+          that.undelegateEvents();
           console.log(errorThrown);
         }
       });
@@ -266,7 +268,7 @@
           sessionStorage.setItem("user_id", data.id);
           sessionStorage.setItem("lat", data.latitude);
           sessionStorage.setItem("lng", data.longitude);
-          window.location.href = "#home"
+          window.location.href = ""
         },
         error: function() {
           alert("Something went wrong adding a user");
@@ -291,12 +293,17 @@
           sessionStorage.setItem("user_id", user.id);
           sessionStorage.setItem("lat", user.latitude);
           sessionStorage.setItem("lng", user.longitude);
-          window.location.href = "#home"
+          window.location.href = ""
         },
         error: function() {
           alert("Something went wrong signing in");
         }
       });
+    });
+
+   $(document).on("click", "#switch-modal", function(){
+      $("#create-account-modal").modal("hide");
+      $("#login-modal").modal("show");
     });
 
 // });

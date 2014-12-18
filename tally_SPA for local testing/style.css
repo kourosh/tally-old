@@ -1,9 +1,19 @@
 body {
 /*	background-color: #23242E;
-*/	font-family: "tablet-gothic-condensed", sans-serif;
+*/	/*font-family: "tablet-gothic-condensed", sans-serif;*/
+font-family: 'Open Sans Condensed', sans-serif;
 }
 a, .party {
 	color: black;
+}
+.sticky {
+	position:fixed;
+}
+.top-50 {
+	top: 198px;
+}
+.margin-top-50 {
+	margin-top: 50px;
 }
 .circle-pic {
 	border-radius: 100%;
@@ -83,4 +93,8 @@ img {
 	 margin-left: auto;
 	 margin-right: auto;
 	 margin-top: 50px;
+}
+
+#users-balance .feed, #local-pol-container .feed {
+	width:350px;
 }
