@@ -18,4 +18,8 @@ Rails.application.routes.draw do
  post '/api/users/signup' => 'api/users#create'
 
  post '/api/users/login' => 'api/users#attempt_login'
+
+ post '/api/support' => 'api/voting#support'
+
+ post '/api/oppose' => 'api/voting#oppose'
 end
