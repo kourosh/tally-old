@@ -1,11 +1,16 @@
 body {
-	background-color: #23242E;
-	font-family: "tablet-gothic-condensed", sans-serif;
+/*	background-color: #23242E;
+*/	font-family: "tablet-gothic-condensed", sans-serif;
 }
+a, .party {
+	color: black;
+}
+
+
+
 .well {
-	background-color: #383A44;
-	border-radius: 10px;
-}
+/*	background-color: #383A44;
+*/}
 .glyphicon-user {
 	font-size: 1.8em;
 }
@@ -23,9 +28,12 @@ body {
 }
 .feed {
 	background-color: white;
-	border-radius: 15px;
 	padding: 20px;
 }
+.side {
+	background-color: #F5F5F5;
+}
+
 .navbar {
 	font-size: 1.2em;
 }
@@ -36,7 +44,6 @@ body {
 	padding: 10px 30px;
 	margin-top: 40px;
 	font-size: 1.4em;
-	border-radius: 0;
 }
 .support {
 	margin-right: 15%;
@@ -50,7 +57,6 @@ p {
 	margin-top: 15px;
 }
 img {
-	border-radius: 10px;
 }
 .smallimages {
 	height: 100px;
@@ -66,8 +72,4 @@ img {
 	 margin-left: auto;
 	 margin-right: auto;
 	 margin-top: 50px;
-	 border-radius: 10px;
-}
-h2 {
-	color: white;
 }

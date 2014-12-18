@@ -57,7 +57,7 @@
 			<div class="row rowspace">
 				<div class="col-md-3">
 					<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
-					<p><a href="#pol/{{id}}">{{attributes.title}}. {{attributes.fullname}}</a><br>({{attributes.party}}) {{attributes.state}}</p>
+					<p class="party"><a href="#pol/{{id}}">{{attributes.title}}. {{attributes.fullname}}</a><br>({{attributes.party}}) {{attributes.state}}</p>
 				</div>
 				<div class="col-md-9">
 					<h2><a href="{{attributes.source}}">{{attributes.headline}}</a></h2>
@@ -73,7 +73,7 @@
 </script>
 
 <script id="user-balance" type="text/x-handlebars-template">
-	<div class="feed">
+	<div class="feed side">
 		<span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">User</span></span>
 		<h4>Balance:</h4>
 		<h3>$5,000</h3>
@@ -81,7 +81,7 @@
 </script>
 
 <script id="local-politicians" type="text/x-handlebars-template">
-	<div class="feed margin-top-20">
+	<div class="feed side margin-top-20">
 		<h3>Your Local Politicians</h3>
 		{{#each Data}}
 			<div class="row">
