@@ -57,7 +57,7 @@
 		<div class="well">
 			<div class="row rowspace">
 				<div class="col-md-3">
-					<img src="../app/assets/images/200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
+					<img src="200x250/{{attributes.bioguide_id}}.jpg" class="img-responsive">
 					<p class="party"><a href="#pol/{{attributes.pol_id}}">{{attributes.title}}. {{attributes.fullname}}</a><br>({{attributes.party}}) {{attributes.state}}</p>
 				</div>
 				<div class="col-md-9">
@@ -85,7 +85,7 @@
 		{{#each Data}}
 			<div class="row">
 				<div class="col-sm-4 margin-top-20">
-					<img src="../app/assets/images/200x250/{{bioguide_id}}.jpg" class="img-responsive smallimages">
+					<img src="200x250/{{bioguide_id}}.jpg" class="img-responsive smallimages">
 				</div>
 				<div class="col-sm-8">
 					<h3>{{first_name}} {{last_name}}</h3>
@@ -98,42 +98,51 @@
 </script>
 
 <script id="pol-scoreboard" type="text/x-handlebars-template">
-<div class="feed">
-	<div class="Polcenter">
-		<img src="../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg" class="img-responsive imgscoreboard">
-		<h3>{{Data.bio.fullname}}</h3>
-		<h4>
-			{{#ifCond Data.bio.party "D"}}
-			  Democrat
-			{{else}}
-			  Republican
-			{{/ifCond}}
-		</h4>
-		<h4>
-			{{#ifCond Data.bio.title "Rep"}}
-			  Representative
-			{{else}}
-			  Senator
-			{{/ifCond}}
-		</h4>
-	</div>
+	<div class="feed well side">
+		<div class="Polcenter">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="circle-pic" style="background:url(../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg) no-repeat;">
+					</div>
+					<h3 class="centered-text">{{Data.bio.fullname}}</h3>
+					<h4 class="centered-text">
+						{{#ifCond Data.bio.party "D"}}
+						Democrat
+						{{else}}
+						Republican
+						{{/ifCond}}
+					</h4>
+					<h4 class="centered-text">
+						{{#ifCond Data.bio.title "Rep"}}
+						Representative
+						{{else}}
+						Senator
+						{{/ifCond}}
+					</h4>
+				</div>
 
-	{{#each Data.events}}
-	<h2><a href="{{source}}">{{headline}}</a></h2>
-	<div class="row">
-		<div class="col-md-1"></div>
-		<div class="col-md-2">
-			<h3>Support</h3>
-			<h4>${{balance_for}}</h4>
+
+			<div class="col-md-1"></div>
+			<div class="col-md-9">
+				{{#each Data.events}}
+				<h2><a href="{{source}}">{{headline}}</a></h2>
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-2">
+						<h3>Support</h3>
+						<h4>${{balance_for}}</h4>
+					</div>
+					<div class="col-md-6"></div>
+					<div class="col-md-2">
+						<h3>Oppose</h3>
+						<h4>${{balance_against}}</h4>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+				{{/each}}
+			</div>
 		</div>
-		<div class="col-md-6"></div>
-		<div class="col-md-2">
-			<h3>Oppose</h3>
-			<h4>${{balance_against}}</h4>
-		</div>
-		<div class="col-md-1"></div>
 	</div>
-	{{/each}}
 </script>
 
 <div class="container">
