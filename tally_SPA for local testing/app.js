@@ -18,6 +18,7 @@
       "settings":"settings",
       "pol/:id":"pol_view",
       "home":"index",
+      "logout":"logout",
       "*action":"redirect"
     }
   });
@@ -78,6 +79,44 @@
         success: function() {
           compile_template($("#event-feed"), that.$el, pols.models);
           console.log(pols.models)
+        }
+      });
+    },
+    events: {
+      "click .support":"support",
+      "click .oppose":"oppose"
+    },
+    support: function() {
+      $.ajax({
+        url: root_uri + "/support",
+        type: "POST",
+        data: {
+          uid: "1",
+          eid: "2"
+        },
+        success: function() { 
+          router.navigate('home', { trigger: true} );
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+          alert("voting");
+          console.log(errorThrown);
+        }
+      });
+    },
+    oppose: function() {
+      $.ajax({
+        url: root_uri + "/oppose",
+        type: "POST",
+        data: {
+          uid: "1",
+          eid: "2"
+        },
+        success: function() { 
+          router.navigate('home', { trigger: true} );
+        },
+        error: function(jqXHR, textStatus, errorThrown) { 
+          alert("voting");
+          console.log(errorThrown);
         }
       });
     }
@@ -154,7 +193,22 @@
     router.navigate("home", {trigger: true})
   });
 
+  router.on("route:logout", function() {
+    sessionStorage.removeItem("auth_token");
+    sessionStorage.removeItem("user_id");
+    sessionStorage.removeItem("lat");
+    sessionStorage.removeItem("lng");
+    router.navigate('home', { trigger: true} );
+  });
+
   router.on("route:index", function() {
+    if (!sessionStorage.getItem("auth_token")) {
+      $('.not-signedin').show();
+      $('.signedin').hide();
+    } else {
+      $('.not-signedin').hide();
+      $('.signedin').show();
+    }
     var allpols = new AllPols();
     allpols.render();
     var userbalance = new UserBalance();
@@ -201,9 +255,9 @@
           sessionStorage.setItem("user_id", data.id);
           sessionStorage.setItem("lat", data.latitude);
           sessionStorage.setItem("lng", data.longitude);
-          $("#payment-info-modal").modal("show")
-          // router.navigate('/', {trigger: false});
-          // router.navigate('/', {trigger: true});
+          // $("#payment-info-modal").modal("show")
+          router.navigate('/', {trigger: false});
+          router.navigate('/', {trigger: true});
         },
         error: function() {
           alert("Something went wrong adding a user");
@@ -228,8 +282,9 @@
           sessionStorage.setItem("user_id", user.id);
           sessionStorage.setItem("lat", user.latitude);
           sessionStorage.setItem("lng", user.longitude);
-          router.navigate('/', {trigger: false});
-          router.navigate('/', {trigger: true});
+          // router.navigate('/', {trigger: false});
+          router.navigate('#home', {trigger: false});
+          router.navigate('#home', {trigger: true});
         },
         error: function() {
           alert("Something went wrong signing in");

@@ -26,16 +26,17 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#signup" data-toggle="modal" data-target="#create-account-modal">Signup</a></li>
-					<li><a href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
+					<li><a class="not-signedin" href="#signup" data-toggle="modal" data-target="#create-account-modal">Signup</a></li>
+					<li><a class="not-signedin" href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
 					<li><a href="#about">About</a></li>
-					<li class="dropdown">
+					<li class="dropdown signedin">
 						<a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#account">Account</a></li>
 							<li><a href="#settings">Settings</a></li>
 						</ul>
 					</li>
+					<li class="signedin"><a href="#logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -60,7 +61,10 @@
 				</div>
 				<div class="col-md-9">
 					<h2><a href="{{attributes.source}}">{{attributes.headline}}</a></h2>
-					<div class="button-div"><a href="#" class="btn btn-lg btn-success buttonz support">Support</a><a href="#" class="btn btn-lg btn-danger buttonz">Oppose</a></div>
+					<div class="button-div">
+						<a href="#" class="btn btn-lg btn-success buttonz support" id="{{attributes.id}}" polid="{{attributes.pol_id}}" >Support</a>
+						<a href="#" class="btn btn-lg btn-danger buttonz oppose" id="{{attributes.id}}" polid="{{attributes.pol_id}}" >Oppose</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -71,7 +75,7 @@
 <script id="user-balance" type="text/x-handlebars-template">
 	<div class="feed">
 		<span class="glyphicon glyphicon-user" aria-hidden="true"><span class="user">User</span></span>
-		<h4>Total Contributions:</h4>
+		<h4>Balance:</h4>
 		<h3>$5,000</h3>
 	</div>
 </script>
@@ -207,24 +211,6 @@
 					  </div>
 					</form>
 	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" id="login" class="btn btn-primary">Submit</button>
-	      </div>
-	    </div><!-- /.modal-content-->
-	  </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
-
-<div class="modal fade" id="payment-info-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-	        <h4 class="modal-title">Payment Info</h4>
-	      </div>
-	      <div class="modal-body">
-	      	
-				</div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        <button type="button" id="login" class="btn btn-primary">Submit</button>
