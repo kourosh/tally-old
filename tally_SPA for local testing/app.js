@@ -86,16 +86,20 @@
       "click .support":"support",
       "click .oppose":"oppose"
     },
-    support: function() {
+    support: function(event) {
+      var that = this;
+      var eid = event.target.id
+      var uid = sessionStorage.getItem("user_id")
       $.ajax({
         url: root_uri + "/support",
         type: "POST",
         data: {
-          uid: "1",
-          eid: "2"
+          uid: uid,
+          eid: eid
         },
         success: function() { 
-          router.navigate('home', { trigger: true} );
+          window.location.href = "#home"
+          that.undelegateEvents();
         },
         error: function(jqXHR, textStatus, errorThrown) { 
           alert("voting");
@@ -103,16 +107,20 @@
         }
       });
     },
-    oppose: function() {
+    oppose: function(event) {
+      var that = this;
+      var eid = event.target.id
+      var uid = sessionStorage.getItem("user_id")
       $.ajax({
         url: root_uri + "/oppose",
         type: "POST",
         data: {
-          uid: "1",
-          eid: "2"
+          uid: uid,
+          eid: eid
         },
         success: function() { 
-          router.navigate('home', { trigger: true} );
+          window.location.href = "#home"
+          that.undelegateEvents();
         },
         error: function(jqXHR, textStatus, errorThrown) { 
           alert("voting");
@@ -130,13 +138,11 @@
       $.ajax({
         url: "https://congress.api.sunlightfoundation.com/legislators/locate?apikey=df81c6bfa0d64dd684ce4ca0435af8f8&latitude="+sessionStorage.getItem("lat")+"&longitude="+sessionStorage.getItem("lng"),
         type: "GET",
-        success: function(data) { 
-          console.log(data);
+        success: function(data) {
           compile_template($("#local-politicians"), that.$el, data.results);
         },
         error: function(jqXHR, textStatus, errorThrown) { 
                 alert("something went wrong getting lat lng pols");
-                console.log(errorThrown);
             }
         });
     }
@@ -152,7 +158,6 @@
       })
       user.fetch({
         success: function(data) {
-          console.log(data);
           compile_template($("#user-balance"), that.$el, data);
         }
       })
@@ -168,16 +173,21 @@
 
   //set up post list view
   var AllPol = Backbone.View.extend({
-    el: "#container",
+    el: "#pol_view",
 
     render: function(id) {
+      var that = this;
       var pol = new Pol({
         id:id 
       })
       pol.fetch({
         success: function() {
-          compile_template("#pol-scoreboard", pol.attributes);
-          console.log(pol.attributes)
+          compile_template($("#pol-scoreboard"),that.$el, pol.attributes);
+          $("#event-feed-container").html("");
+          $("#users-balance").html("");
+          $("#local-pol-container").html("");
+
+          
         }
       });
     }
@@ -190,7 +200,7 @@
   });
 
   router.on("route:redirect", function() {
-    router.navigate("home", {trigger: true})
+    window.location.href = "#home"
   });
 
   router.on("route:logout", function() {
@@ -198,7 +208,7 @@
     sessionStorage.removeItem("user_id");
     sessionStorage.removeItem("lat");
     sessionStorage.removeItem("lng");
-    router.navigate('home', { trigger: true} );
+    window.location.href = "#home"
   });
 
   router.on("route:index", function() {
@@ -215,6 +225,7 @@
     userbalance.render(sessionStorage.getItem("user_id"));
     var localpols = new LocalPols();
     localpols.render();
+    $("#pol_view").html("");
     // Need Pols events here
   });
 
@@ -255,9 +266,7 @@
           sessionStorage.setItem("user_id", data.id);
           sessionStorage.setItem("lat", data.latitude);
           sessionStorage.setItem("lng", data.longitude);
-          // $("#payment-info-modal").modal("show")
-          router.navigate('/', {trigger: false});
-          router.navigate('/', {trigger: true});
+          window.location.href = "#home"
         },
         error: function() {
           alert("Something went wrong adding a user");
@@ -282,9 +291,7 @@
           sessionStorage.setItem("user_id", user.id);
           sessionStorage.setItem("lat", user.latitude);
           sessionStorage.setItem("lng", user.longitude);
-          // router.navigate('/', {trigger: false});
-          router.navigate('#home', {trigger: false});
-          router.navigate('#home', {trigger: true});
+          window.location.href = "#home"
         },
         error: function() {
           alert("Something went wrong signing in");

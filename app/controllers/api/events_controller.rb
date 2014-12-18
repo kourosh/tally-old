@@ -8,7 +8,7 @@ module API
   # GET /events
   # GET /events.json
   def index
-    @events = Event.includes(:pol).all
+    @events = Event.includes(:pol).all.order(created_at: :desc)
     respond_to do |format|
       format.json { render :index, status: 200 }
     end

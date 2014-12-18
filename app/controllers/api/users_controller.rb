@@ -41,6 +41,7 @@ module API
     user_parameters = user_params.merge(latitude: geocode_results.lat, longitude: geocode_results.lng)
 
     @user = User.new(user_parameters)
+    @user.balance = 100
 
     respond_to do |format|
       if @user.save
