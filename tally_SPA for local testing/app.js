@@ -31,7 +31,7 @@
 
   var router = new Router();
 
-  var root_uri = "http://localhost:3000/api"
+  var root_uri = "http://tally-us.herokuapp.com/api"
 
   //set up pols collection
   var Pols = Backbone.Collection.extend({
