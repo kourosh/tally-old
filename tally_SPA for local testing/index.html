@@ -100,21 +100,21 @@
 </script>
 
 <script id="pol-scoreboard" type="text/x-handlebars-template">
-	<div class="feed well">
+	<div class="feed well side">
 		<div class="Polcenter">
 			<div class="row">
 				<div class="col-md-2">
-					<div class="circle-pic" style="background:url(200x250/{{Data.bio.bioguide_id}}.jpg) no-repeat;">
+					<div class="circle-pic" style="background:url(../app/assets/images/200x250/{{Data.bio.bioguide_id}}.jpg) no-repeat;">
 					</div>
-					<h3>{{Data.bio.fullname}}</h3>
-					<h4>
+					<h3 class="centered-text">{{Data.bio.fullname}}</h3>
+					<h4 class="centered-text">
 						{{#ifCond Data.bio.party "D"}}
 						Democrat
 						{{else}}
 						Republican
 						{{/ifCond}}
 					</h4>
-					<h4>
+					<h4 class="centered-text">
 						{{#ifCond Data.bio.title "Rep"}}
 						Representative
 						{{else}}
@@ -124,8 +124,8 @@
 				</div>
 
 
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
+			<div class="col-md-1"></div>
+			<div class="col-md-9">
 				{{#each Data.events}}
 				<h2><a href="{{source}}">{{headline}}</a></h2>
 				<div class="row">

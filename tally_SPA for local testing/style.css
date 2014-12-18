@@ -12,8 +12,9 @@ a, .party {
 	background-size: cover !important;
 	background-position:50% 50%;
 }
-
-
+.centered-text {
+	margin-left: 50px;
+}
 .well {
 /*	background-color: #383A44;
 */}
