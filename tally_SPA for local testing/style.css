@@ -5,7 +5,13 @@ body {
 a, .party {
 	color: black;
 }
-
+.circle-pic {
+	border-radius: 100%;
+	width: 200px;
+	height: 200px;
+	background-size: cover !important;
+	background-position:50% 50%;
+}
 
 
 .well {
