@@ -1,0 +1,17 @@
+<div>
+	<div class="well">
+		<div class="row rowspace">
+			<div class="col-md-3">
+				<img src="200x250/<%= @event.bioguide_id %>.jpg" class="img-responsive">
+				<p class="party"><a href="#pol/<%= @event.pol_id %>"><%= @event.title %>. <%= @event.fullname %></a><br>(<%= @event.party %>) <%= @event.state %></p>
+			</div>
+			<div class="col-md-9">
+				<h2><a href="<%= @event.source %>"><%= @event.headline %></a></h2>
+				<div class="button-div">
+					<a href="#" class="btn btn-lg btn-success buttonz support" id="<%= @event.id %>">Support</a>
+					<a href="#" class="btn btn-lg btn-danger buttonz oppose" id="<%= @event.id %>">Oppose</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
