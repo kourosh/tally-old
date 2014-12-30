@@ -10,7 +10,7 @@ module API
   def index
     @events = Event.includes(:pol).all.order(created_at: :desc)
     respond_to do |format|
-      format.html { render :index(@events) }
+      format.html { render :index }
       format.json { render :index, status: 200 }
     end
   end
@@ -20,7 +20,7 @@ module API
   def show
     @event = Event.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to api_event_path }
+      format.html { render :show }
       format.json { render json: @event }
     end
   end
