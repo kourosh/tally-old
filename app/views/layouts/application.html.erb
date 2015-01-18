@@ -7,15 +7,132 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
   <script src="//use.typekit.net/jkx0vob.js"></script>
-	<script>try{Typekit.load();}catch(e){}</script>
+  <script>try{Typekit.load();}catch(e){}</script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand tally" href="/api/events">t</a>
+        <a class="navbar-brand" href="/api/events">Tally</a>
+      </div>
 
-<%= yield %>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a class="not-signedin" href="#signup" data-toggle="modal" data-target="#create-account-modal">Signup</a></li>
+          <li><a class="not-signedin" href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          <li><a href="#about">About</a></li>
+          <li class="dropdown signedin">
+            <a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#account">Account</a></li>
+              <li><a href="#settings">Settings</a></li>
+            </ul>
+          </li>
+          <li class="signedin"><a href="#logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="modal fade" id="create-account-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title">Sign Up!</h4>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label for="add-email">Email address</label>
+                <input type="email" class="form-control" id="add-email" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="add-firstname">First Name</label>
+                <input type="text" class="form-control" id="add-firstname" placeholder="First Name">
+                <label for="add-lastname">Last Name</label>
+                <input type="text" class="form-control" id="add-lastname" placeholder="Last Name">
+              </div>
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="add-street" placeholder="Street Address">
+                <input type="text" class="form-control" id="add-city" placeholder="City">
+                <input type="text" class="form-control" id="add-state" placeholder="State">
+                <input type="text" class="form-control" id="add-zip" placeholder="Zip">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="add-phone" placeholder="Phone Number">
+              </div>
+              <div class="form-group">
+                <label for="job">Job</label>
+                <input type="text" class="form-control" id="add-position" placeholder="Position">
+                <input type="text" class="form-control" id="add-employer" placeholder="Employer">
+              </div>
+              <div class="form-group">
+                <label for="unemployed-or-retired">Unemployed or Retired</label>
+                <input id="add-unemployed-or-retired" type="checkbox">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="add-password" placeholder="Password">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <a class="pull-left" id="switch-modal" href="#">Already have an account? Sign in here.</a>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" id="signup" class="btn btn-primary">Submit</button>
+          </div>
+        </div><!-- /.modal-content-->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+  </div>
+
+  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">Log In!</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="add-email"></label>
+              <input type="email" class="form-control" id="check-email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="check-password" placeholder="Password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" id="login" class="btn btn-primary">Submit</button>
+        </div>
+      </div><!-- /.modal-content-->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  <div class="container">
+    <%= yield %>
+  </div>
 
 </body>
 </html>

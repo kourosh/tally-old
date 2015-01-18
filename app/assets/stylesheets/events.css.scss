@@ -23,3 +23,103 @@ ul.ui-autocomplete {
     }
   }
 } 
+body {
+/*  background-color: #23242E;
+*/  /*font-family: "tablet-gothic-condensed", sans-serif;*/
+font-family: 'Open Sans Condensed', sans-serif;
+}
+a, .party {
+  color: black;
+}
+.sticky {
+  position:fixed;
+}
+.top-50 {
+  top: 198px;
+}
+.margin-top-50 {
+  margin-top: 50px;
+}
+.circle-pic {
+  border-radius: 100%;
+  width: 200px;
+  height: 200px;
+  background-size: cover !important;
+  background-position:50% 50%;
+}
+.centered-text {
+  margin-left: 50px;
+}
+.well {
+/*  background-color: #383A44;
+*/}
+.glyphicon-user {
+  font-size: 1.8em;
+}
+.user {
+  margin-left: 20px;
+}
+.tally {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.5em;
+  font-style: bold;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+.feed {
+  background-color: white;
+  padding: 20px;
+}
+.side {
+  background-color: #F5F5F5;
+}
+
+.navbar {
+  font-size: 1.2em;
+}
+.button-div {
+  text-align: center;
+}
+.buttonz {
+  padding: 10px 30px;
+  margin-top: 40px;
+  font-size: 1.4em;
+}
+.support {
+  margin-right: 15%;
+  background-color: #0078C7;
+}
+.oppose {
+  margin-right: 15%;
+  background-color: #0078C7;
+}
+p {
+  text-align: center;
+  margin-top: 5px;
+}
+.rowspace {
+  margin-top: 15px;
+}
+img {
+}
+.smallimages {
+  height: 100px;
+}
+.margin-top-20 {
+  margin-top: 20px;
+}
+ .Polcenter {
+   text-align: center;
+   margin-bottom: 50px;
+}
+ .imgscoreboard {
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 50px;
+}
+
+#users-balance .feed, #local-pol-container .feed {
+  width:350px;
+}

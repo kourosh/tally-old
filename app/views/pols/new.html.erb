@@ -1,6 +1,6 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" style="margin-top:70px"><%= notice %></p>
 <h1>New pol</h1>
-<%= form_for [@pol], method: "create" do |f| %>
+<%= form_for @pol, method: "create" do |f| %>
 	<p>First Name: <%= f.text_field(:firstname) %></p>
 	<p>Last Name: <%= f.text_field(:lastname) %></p>
 	<p>In Office: <%= f.check_box :in_office %></p>

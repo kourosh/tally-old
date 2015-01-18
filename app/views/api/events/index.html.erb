@@ -1,13 +1,13 @@
-<div>
+<div style="margin-top:70px">
 <% @events.each do |e| %>
 	<div class="well">
 		<div class="row rowspace">
 			<div class="col-md-3">
 				<img src="/assets/200x250/<%= e.pol.bioguide_id %>.jpg" class="img-responsive">
-				<p class="party"><a href="#pol/<%= e.pol_id %>"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
+				<p class="party"><a href="pols/<%= e.pol_id %>"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
 			</div>
 			<div class="col-md-9">
-				<h2><a href="<%= e.source %>"><%= e.headline %></a></h2>
+				<h2><a href="/api/events/<%= e.id %>"><%= e.headline %></a></h2>
 				<div class="button-div">
 					<a href="#" class="btn btn-lg btn-success buttonz support" id="<%= e.id %>">Support</a>
 					<a href="#" class="btn btn-lg btn-danger buttonz oppose" id="<%= e.id %>">Oppose</a>

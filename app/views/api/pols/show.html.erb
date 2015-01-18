@@ -1,0 +1,45 @@
+<div class="feed well side" style="margin-top:70px">
+		<div class="Polcenter">
+			<div class="row">
+				<div class="col-md-2">
+					<div class="circle-pic" style="background:url(/assets/200x250/<%= @pol.bioguide_id %>.jpg) no-repeat;">
+					</div>
+					<h3 class="centered-text"><%= @pol.fullname %></h3>
+					<h4 class="centered-text">
+						<% if @pol.party == "D" %>
+						Democrat
+						<% else %>
+						Republican
+						<% end %>
+					</h4>
+					<h4 class="centered-text">
+						<% if @pol.title == "Rep" %>
+						Representative
+						<% else %>
+						Senator
+						<% end %>
+					</h4>
+				</div>
+
+
+			<div class="col-md-1"></div>
+			<div class="col-md-9">
+				<% @pol.events.each do |e| %>
+				<h2><a href="/api/events/<%= e.id %>"><%= e.headline %></a></h2>
+				<div class="row">
+					<div class="col-md-1"></div>
+					<div class="col-md-2">
+						<h3>Support</h3>
+						<h4>$ <%= e.balance_for %></h4>
+					</div>
+					<div class="col-md-6"></div>
+					<div class="col-md-2">
+						<h3>Oppose</h3>
+						<h4>$ <%= e.balance_against %></h4>
+					</div>
+					<div class="col-md-1"></div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>

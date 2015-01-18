@@ -18,6 +18,7 @@ module API
   def show
     @pol = Pol.includes(:events).find(params[:id])
     respond_to do |format|
+      format.html {render :show }
       format.json { render :json => { bio: @pol, events: @pol.events } }
     end
   end
