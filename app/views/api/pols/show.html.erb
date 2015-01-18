@@ -25,7 +25,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-9">
 				<% @pol.events.each do |e| %>
-				<h2><a href="<%= e.source %>"><%= e.headline %></a></h2>
+				<h2><a href="/api/events/<%= e.id %>"><%= e.headline %></a></h2>
 				<div class="row">
 					<div class="col-md-1"></div>
 					<div class="col-md-2">

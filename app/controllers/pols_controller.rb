@@ -1,7 +1,7 @@
 
   class PolsController < ApplicationController
     before_action :set_pol, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate, except: [:index, :show]
+    # before_action :authenticate, except: [:index, :show]
 
   # GET /pols
   # GET /pols.json
@@ -24,6 +24,10 @@
   # GET /pols/1/edit
   def edit
     @pol = Pol.find(params[:id])
+  end
+
+  def new
+    @pol = Pol.new
   end
 
   # POST /pols
@@ -82,7 +86,7 @@
         User.find_by(auth_token: token)
       end
     end
-    
+
     def render_unauthorized
       self.headers['WWW-Authenticate'] = 'Token realm="posts"'
       respond_to do |format|
