@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
   resources :transactions
 
 	namespace :api, path: 'api/' do
    resources :events, :search_suggestions, :users, :pols
   end
+ root to: "events#index"
 
  resources :events
 

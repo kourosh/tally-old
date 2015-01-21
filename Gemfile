@@ -71,3 +71,5 @@ gem "figaro"
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'braintree'
+
+gem 'devise'
