@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 	# after_validation :geocode
 	# acts_as_mappable :lat_column_name => :latitude,
 	# :lng_column_name => :longitude
-	has_secure_password
+	# has_secure_password
 
   # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   # validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
@@ -27,5 +27,5 @@ class User < ActiveRecord::Base
 			break token unless self.class.exists?(auth_token: token)
 		end
 	end
-	
+
 end
