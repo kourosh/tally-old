@@ -1,9 +1,10 @@
 
   class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate, except: [:index, :new, :create, :show, :edit, :update, :destroy]
+    # before_action :authenticate, except: [:index, :new, :create, :show, :edit, :update, :destroy]
+    before_action :authenticate_user!, except: [:index, :show]
 
-    
+
   # GET /events
   # GET /events.json
   def index
@@ -78,22 +79,22 @@
       params.require(:event).permit(:headline, :source, :pol_id)
     end
 
-    protected
-    def authenticate
-      authenticate_token || render_unauthorized
-    end
-    
-    def authenticate_token
-      authenticate_or_request_with_http_token('posts') do |token, options|
-        User.find_by(auth_token: token)
-      end
-    end
-    
-    def render_unauthorized
-      self.headers['WWW-Authenticate'] = 'Token realm="posts"'
-      respond_to do |format|
-        format.json { render json: 'Bad credentials', status: 401 }
-      end
-    end
+    # protected
+    # def authenticate
+    #   authenticate_token || render_unauthorized
+    # end
+
+    # def authenticate_token
+    #   authenticate_or_request_with_http_token('posts') do |token, options|
+    #     User.find_by(auth_token: token)
+    #   end
+    # end
+
+    # def render_unauthorized
+    #   self.headers['WWW-Authenticate'] = 'Token realm="posts"'
+    #   respond_to do |format|
+    #     format.json { render json: 'Bad credentials', status: 401 }
+    #   end
+    # end
 
   end

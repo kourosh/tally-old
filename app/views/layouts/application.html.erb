@@ -31,9 +31,12 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="not-signedin" href="#signup" data-toggle="modal" data-target="#create-account-modal">Signup</a></li>
-          <li><a class="not-signedin" href="#login" data-toggle="modal" data-target="#login-modal">Login</a></li>
+          <% if !user_signed_in? %>
+          <li><a class="not-signedin" href="/users/sign_up">Signup</a></li>
+          <li><a class="not-signedin" href="/users/sign_in">Login</a></li>
+          <% end %>
           <li><a href="#about">About</a></li>
+          <% if user_signed_in? %>
           <li class="dropdown signedin">
             <a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
@@ -41,13 +44,14 @@
               <li><a href="#settings">Settings</a></li>
             </ul>
           </li>
-          <li class="signedin"><a href="#logout">Logout</a></li>
+          <li class="signedin"><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+          <% end %>
         </ul>
       </div>
     </div>
   </nav>
 
-  <div class="container">
+<!--   <div class="container">
     <div class="modal fade" id="create-account-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -128,7 +132,7 @@
         </div>
       </div><!-- /.modal-content-->
     </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
+  </div><!-- /.modal --> -->
 
   <div class="container">
     <%= yield %>
