@@ -3,9 +3,41 @@
 <%= form_for @pol, method: "create" do |f| %>
 	<p>First Name: <%= f.text_field(:firstname) %></p>
 	<p>Last Name: <%= f.text_field(:lastname) %></p>
-	<p>In Office: <%= f.check_box :in_office %></p>
-<%= submit_tag("Create Politician") %>
+  <p>Bioguide: <%= f.text_field(:bioguide_id) %></p>
+  <p>Birthdate: <%= f.date_field(:birthdate) %></p>
+  <p>Gender: <%= f.text_field(:gender) %></p>
+  <p>Nickname: <%= f.text_field(:nickname) %></p>
+  <p>Middlename: <%= f.text_field(:middlename) %></p>
+  <p>Name suffix: <%= f.text_field(:name_suffix) %></p>
+  <p>webform URL: <%= f.text_field(:webform) %></p>
+  <p>CRP ID: <%= f.text_field(:crp_id) %></p>
+  <p>Email: <%= f.text_field(:oc_email) %></p>
+  <p>OCD ID: <%= f.text_field(:ocd_id) %></p>
+  <p>Congresspedia URL: <%= f.text_field(:congresspedia_url) %></p>
+  <p>District: <%= f.number_field(:district) %></p>
+  <p>Facebook: <%= f.text_field(:facebook_id) %></p>
+  <p>Twitter: <%= f.text_field(:twitter_id) %></p>
+  <p>Youtube: <%= f.text_field(:youtube_url) %></p>
+  <p>Fax: <%= f.text_field(:fax) %></p>
+  <p>FEC ID: <%= f.text_field(:fec_id) %></p>
+  <p>Official RSS: <%= f.text_field(:official_rss) %></p>
+  <p>Congress Office Address: <%= f.text_field(:congress_office) %></p>
+  <p>Party: <%= f.text_field(:party) %></p>
+  <p>Phone: <%= f.text_field(:phone) %></p>
+  <p>Senate Class: <%= f.text_field(:senate_class) %></p>
+  <p>State: <%= f.text_field(:state) %></p>
+  <p>Term Start: <%= f.date_field(:term_start) %></p>
+  <p>Term End: <%= f.date_field(:term_end) %></p>
+  <p>Thomas ID: <%= f.text_field(:thomas_id) %></p>
+  <p>Title: <%= f.text_field(:title) %></p>
+  <p>Votesmart ID: <%= f.text_field(:votesmart_id) %></p>
+  <p>Website URL: <%= f.text_field(:website) %></p>
+  <p>Current Office: <%= f.text_field(:current_office) %></p>
+  <p>Personal Website: <%= f.text_field(:personal_website) %></p>
+  <p>Primary Donation Website: <%= f.text_field(:primary_donation_website) %></p>
+
+  <p><%= submit_tag("Create Politician") %></p>
 <% end %>
 
-<%= link_to 'Show', @pol %>
-<%= link_to 'Back', pols_path %>
+<p><%= link_to 'Show', @pol %></p>
+<p><%= link_to 'Back', pols_path %></p>
