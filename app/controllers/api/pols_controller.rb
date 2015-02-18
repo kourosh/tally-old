@@ -1,15 +1,15 @@
 module API
   class PolsController < ApplicationController
     before_action :set_pol, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate, except: [:index, :show]
-    
+    # before_action :authenticate, except: [:index, :show]
+
 
   # GET /pols
   # GET /pols.json
   def index
     @pols = Pol.includes(:events).all
     respond_to do |format|
-      format.json 
+      format.json
     end
   end
 
@@ -84,7 +84,7 @@ module API
         User.find_by(auth_token: token)
       end
     end
-    
+
     def render_unauthorized
       self.headers['WWW-Authenticate'] = 'Token realm="posts"'
       respond_to do |format|

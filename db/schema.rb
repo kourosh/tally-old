@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150120194343) do
+ActiveRecord::Schema.define(version: 20150218184634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(version: 20150120194343) do
     t.string   "fullname"
     t.string   "gender"
     t.string   "govtrack_id"
-    t.boolean  "in_office"
     t.string   "lastname"
     t.string   "leadership_role"
     t.string   "middlename"
@@ -66,6 +65,9 @@ ActiveRecord::Schema.define(version: 20150120194343) do
     t.string   "youtube_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "current_office"
+    t.string   "personal_website"
+    t.string   "primary_donation_website"
   end
 
   create_table "transactions", force: true do |t|
