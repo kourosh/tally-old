@@ -23,6 +23,10 @@
     <%= f.label "Politician" %><br />
     <%= f.collection_select :pol_id, Pol.order(:fullname), :id, :fullname, include_blank: true %>
   </div>
+  <div class="field">
+    <%= f.label "Social Media Copy" %><br />
+    <%= f.text_field :social_media_copy, :style => "width:500px;" %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>

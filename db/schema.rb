@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218184634) do
+ActiveRecord::Schema.define(version: 20150219200340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150218184634) do
     t.datetime "updated_at"
     t.float    "balance_for"
     t.float    "balance_against"
+    t.string   "social_media_copy"
   end
 
   create_table "pols", force: true do |t|
