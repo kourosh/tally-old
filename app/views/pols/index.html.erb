@@ -3,7 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>In Office</th>
       <th>Title</th>
       <th>First</th>
       <th>Last</th>
@@ -19,7 +18,6 @@
   <tbody>
     <% @pols.each do |pol| %>
     <tr>
-      <td><% if pol.in_office %>✔<% else %> <% end %></td>
       <td><%= pol.title %></td>
       <td><%= pol.firstname %></td>
       <td><%= pol.lastname %></td>

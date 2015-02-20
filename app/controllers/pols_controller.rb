@@ -2,7 +2,7 @@
   class PolsController < ApplicationController
     before_action :set_pol, only: [:show, :edit, :update, :destroy]
     # before_action :authenticate, except: [:index, :show]
-    before_action :authenticate_user!, except: [:index, :show, :new, :create]
+    before_action :authenticate_user!, except: [:index, :show]
 
   # GET /pols
   # GET /pols.json
@@ -13,7 +13,30 @@
     end
   end
 
-  # GET /pols/1
+
+  def new
+    if current_user.admin?
+      @pol = Pol.new
+    end
+  end
+
+  # POST /pols
+  # POST /pols.json
+  def create
+    if current_user.admin?
+      @pol = Pol.new(pol_params)
+
+      respond_to do |format|
+        if @pol.save
+          format.html { redirect_to @pol, notice: 'Successfully created politician.' }
+        else
+          format.html { render :new }
+        end
+      end
+    end
+  end
+
+    # GET /pols/1
   # GET /pols/1.json
   def show
     @pol = Pol.includes(:events).find(params[:id])
@@ -24,35 +47,21 @@
 
   # GET /pols/1/edit
   def edit
-    @pol = Pol.find(params[:id])
-  end
-
-  def new
-    @pol = Pol.new
-  end
-
-  # POST /pols
-  # POST /pols.json
-  def create
-    @pol = Pol.new(pol_params)
-
-    respond_to do |format|
-      if @pol.save
-        format.html { redirect_to @pol, notice: 'Successfully created politician.' }
-      else
-        format.html { render :new }
-      end
+    if current_user.admin?
+      @pol = Pol.find(params[:id])
     end
   end
 
   # PATCH/PUT /pols/1
   # PATCH/PUT /pols/1.json
   def update
-    respond_to do |format|
-      if @pol.update(pol_params)
-        format.html { redirect_to @pol, notice: 'Successfully updated politician.' }
-      else
-        format.html { render :edit }
+    if current_user.admin?
+      respond_to do |format|
+        if @pol.update(pol_params)
+          format.html { redirect_to @pol, notice: 'Successfully updated politician.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
@@ -60,9 +69,11 @@
   # DELETE /pols/1
   # DELETE /pols/1.json
   def destroy
-    @pol.destroy
-    respond_to do |format|
-      format.html { redirect_to pols_url, notice: 'Politician was successfully destroyed.' }
+    if current_user.admin?
+      @pol.destroy
+      respond_to do |format|
+        format.html { redirect_to pols_url, notice: 'Politician was successfully destroyed.' }
+      end
     end
   end
 

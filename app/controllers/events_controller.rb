@@ -2,7 +2,7 @@
   class EventsController < ApplicationController
     before_action :set_event, only: [:show, :edit, :update, :destroy]
     # before_action :authenticate, except: [:index, :new, :create, :show, :edit, :update, :destroy]
-    before_action :authenticate_user!, except: [:index, :show, :new, :create]
+    before_action :authenticate_user!, except: [:index, :show]
 
 
   # GET /events
@@ -11,6 +11,29 @@
     @events = Event.includes(:pol).all
     respond_to do |format|
       format.html
+    end
+  end
+
+  # GET /events/new
+  def new
+    if current_user.admin?
+      @event = Event.new
+    end
+  end
+
+  # POST /events
+  # POST /events.json
+  def create
+    if current_user.admin?
+      @event = Event.new(event_params)
+
+      respond_to do |format|
+        if @event.save
+          format.html { redirect_to :back, notice: 'Event was successfully created.' }
+        else
+          format.html { render :new }
+        end
+      end
     end
   end
 
@@ -23,38 +46,24 @@
     end
   end
 
-  # GET /events/new
-  def new
-    @event = Event.new
-  end
 
   # GET /events/1/edit
   def edit
-    @event = Event.find(params[:id])
-  end
-
-  # POST /events
-  # POST /events.json
-  def create
-    @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to :back, notice: 'Event was successfully created.' }
-      else
-        format.html { render :new }
-      end
+    if current_user.admin?
+      @event = Event.find(params[:id])
     end
   end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-      else
-        format.html { render :edit }
+    if current_user.admin?
+      respond_to do |format|
+        if @event.update(event_params)
+          format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
@@ -62,9 +71,11 @@
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+    if current_user.admin?
+      @event.destroy
+      respond_to do |format|
+        format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
+      end
     end
   end
 

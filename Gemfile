@@ -56,7 +56,7 @@ end
 group :development do
 	gem "better_errors"
 	gem "quiet_assets"
-	gem "awesome_print", require: "ap"
+	gem "awesome_print", "~>1.6.1", require: "ap"
 end
 
 # Use ActiveModel has_secure_password
