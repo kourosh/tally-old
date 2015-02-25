@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 	has_many :events, through: :transactions
 	has_many :transactions
+  has_many :comments, as: :commentable
+  has_many :comments
+  has_many :favorites, as: :favorited
+  has_many :favorites
 
 	before_create :set_auth_token
 	# geocoded_by :full_street_address

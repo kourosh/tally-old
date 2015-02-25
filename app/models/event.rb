@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
 	belongs_to :pol
 	has_many :users, through: :transactions
 	has_many :transactions
+	has_many :comments, as: :commentable
+	has_many :favorites, as: :favorited
 	# before_create :set_auth_token
 
 	def pol_fullname

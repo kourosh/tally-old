@@ -1,10 +1,11 @@
 class Pol < ActiveRecord::Base
 	has_many :events
-
+	has_many :comments, as: :commentable
+	has_many :favorites, as: :favorited
 	# def fullname
 	# 	"#{firstname} #{lastname}"
 	# end
-	
+
 	before_save :make_fullname
 	# before_create :set_auth_token
 

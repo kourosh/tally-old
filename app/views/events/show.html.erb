@@ -31,3 +31,19 @@
     </div>
   </div>
 </div>
+<ul id="comments">
+  <% @comments.each do |comment| %>
+    <li><%= comment.content %></li>
+  <% end %>
+</ul>
+
+<h2>New Comment</h2>
+<%= form_for [@event, Comment.new] do |form| %>
+  <div class="formList">
+    <p>
+      <%= form.label :content %>
+      <%= form.text_area :content, :rows => 5 %>
+    </p>
+    <p><%= submit_tag "Add comment" %></p>
+  </div>
+<% end %>

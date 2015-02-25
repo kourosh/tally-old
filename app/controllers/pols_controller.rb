@@ -40,6 +40,7 @@
   # GET /pols/1.json
   def show
     @pol = Pol.includes(:events).find(params[:id])
+    @comments = @pol.comments
     respond_to do |format|
       format.html
     end

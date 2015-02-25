@@ -6,17 +6,27 @@ Rails.application.routes.draw do
   resources :transactions
 
 	namespace :api, path: 'api/' do
-   resources :events, :search_suggestions, :users, :pols
+   resources :search_suggestions, :users
+   resources :pols, :events do
+    post '/comments' => 'comments#create', as: 'comments'
+    post '/favorites' => 'favorites#create', as: 'favorites'
+   end
   end
  root to: "events#index"
 
- resources :events
+ resources :events do
+  post '/comments' => 'comments#create', as: 'comments'
+  post '/favorites' => 'favorites#create', as: 'favorites'
+ end
 
  resources :search_suggestions, except: [:new, :edit]
 
  resources :users, except: [:new, :edit]
 
- resources :pols
+ resources :pols do
+  post '/comments' => 'comments#create', as: 'comments'
+  post '/favorites' => 'favorites#create', as: 'favorites'
+ end
 
 
  post '/api/users/signup' => 'api/users#create'
