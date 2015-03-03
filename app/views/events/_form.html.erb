@@ -27,7 +27,10 @@
     <%= f.label "Social Media Copy" %><br />
     <%= f.text_field :social_media_copy, :style => "width:500px;" %>
   </div>
-
+  <div class="field">
+    <%= f.label "Summary" %><br />
+    <%= f.text_area :summary, :style => "width:500px;", :rows => 5 %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

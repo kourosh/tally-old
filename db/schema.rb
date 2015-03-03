@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225222214) do
+ActiveRecord::Schema.define(version: 20150303235047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150225222214) do
     t.float    "balance_for"
     t.float    "balance_against"
     t.string   "social_media_copy"
+    t.text     "summary"
   end
 
   create_table "favorites", force: true do |t|
