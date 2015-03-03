@@ -10,6 +10,7 @@ Rails.application.routes.draw do
    resources :pols, :events do
     post '/comments' => 'comments#create', as: 'comments'
     post '/favorites' => 'favorites#create', as: 'favorites'
+    delete '/favorites/:id' => 'favorites#destroy', as: 'remove_favorites'
    end
   end
  root to: "events#index"
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
  resources :events do
   post '/comments' => 'comments#create', as: 'comments'
   post '/favorites' => 'favorites#create', as: 'favorites'
+  delete '/favorites/:id' => 'favorites#destroy', as: 'remove_favorites'
  end
 
  resources :search_suggestions, except: [:new, :edit]
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
  resources :pols do
   post '/comments' => 'comments#create', as: 'comments'
   post '/favorites' => 'favorites#create', as: 'favorites'
+  delete '/favorites/:id' => 'favorites#destroy', as: 'remove_favorites'
  end
 
 

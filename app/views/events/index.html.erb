@@ -1,48 +1,19 @@
-<!-- <h1>Listing events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Headline</th>
-      <th>Source</th>
-      <th>Politician</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.headline %></td>
-        <td><%= event.source %></td>
-        <td><%= event.pol.fullname %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Event', new_event_path %> -->
-<div style="margin-top:70px">
 <% @events.each do |e| %>
-  <div class="well">
-    <div class="row rowspace">
-      <div class="col-md-3">
-        <img src="/assets/200x250/<%= e.pol.bioguide_id %>.jpg" class="img-responsive">
-        <p class="party"><a href="pols/<%= e.pol_id %>"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
-      </div>
-      <div class="col-md-9">
-        <h2><a href="events/<%= e.id %>"><%= e.headline %></a></h2>
-        <div class="button-div">
-          <a href="#" class="btn btn-lg btn-success buttonz support" id="<%= e.id %>">Support</a>
-          <a href="#" class="btn btn-lg btn-danger buttonz oppose" id="<%= e.id %>">Oppose</a>
-        </div>
+  <div class="row rowspace">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-8">
+      <h3 id="event-title"><a href="events/<%= e.id %>"><%= e.headline %></a></h3>
+      <div class="button-div">
+        <a class="arrows support" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
+        <a class="arrows oppose" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
       </div>
     </div>
+
+    <div class="col-sm-3">
+      <img src="/assets/200x250/<%= e.pol.bioguide_id %>.jpg" class="img-responsive pol-pics">
+      <p class="party"><a href="pols/<%= e.pol_id %>"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
+    </div>
+
   </div>
+  <hr>
 <% end %>
-</div>

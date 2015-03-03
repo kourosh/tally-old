@@ -1,10 +1,9 @@
 class CommentsController < ApplicationController
   def create
-    comment = find_commentable.comments.build(comment_params)
-    comment.update_attributes(user: current_user)
-    comment.save
+    find_commentable.comments.build(comment_params.merge(user: current_user)).save
     redirect_to :back
   end
+
 
   private
     def comment_params

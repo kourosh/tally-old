@@ -1,25 +1,9 @@
-<!-- <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Headline:</strong>
-  <%= @event.headline %>
-</p>
-
-<p>
-  <strong>Source:</strong>
-  <%= @event.source %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
- -->
-
- <div style="margin-top:70px">
-  <div class="well">
     <div class="row rowspace">
       <div class="col-md-3">
-        <img src="/assets/200x250/<%= @event.pol.bioguide_id %>.jpg" class="img-responsive">
-        <p class="party"><%= link_to "#{@event.pol.title}. #{@event.pol.fullname}", pol_path(@event.pol_id) %><br>(<%= @event.pol.party %>) <%= @event.pol.state %></p>
+        <div class="pol-pic">
+          <img src="/assets/200x250/<%= @event.pol.bioguide_id %>.jpg" class="img-responsive">
+          <p class="party"><%= link_to "#{@event.pol.title}. #{@event.pol.fullname}", pol_path(@event.pol_id) %><br>(<%= @event.pol.party %>) <%= @event.pol.state %></p>
+        </div>
       </div>
       <div class="col-md-9">
         <h2><a href="<%= @event.source %>"><%= @event.headline %></a></h2>
@@ -29,8 +13,7 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+
 <ul id="comments">
   <% @comments.each do |comment| %>
     <li><%= comment.content %></li>

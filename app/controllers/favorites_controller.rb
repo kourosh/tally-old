@@ -4,6 +4,11 @@ class FavoritesController < ApplicationController
     redirect_to :back
   end
 
+  def destroy
+    Favorite.where(id: params[:id].to_i).where(user_id: current_user.id).first.destroy
+    redirect_to :back, notice: 'Favorite removed'
+  end
+
   private
 
     def find_favorited

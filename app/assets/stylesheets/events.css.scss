@@ -28,8 +28,12 @@ body {
 */  /*font-family: "tablet-gothic-condensed", sans-serif;*/
 font-family: 'Open Sans Condensed', sans-serif;
 }
-a, .party {
+.party {
   color: black;
+  font-size: 1em;
+}
+#event-title {
+  font-size: 1.3em;
 }
 .sticky {
   position:fixed;
@@ -80,28 +84,27 @@ a, .party {
   font-size: 1.2em;
 }
 .button-div {
+  margin-top: 10%;
   text-align: center;
 }
 .buttonz {
-  padding: 10px 30px;
+  padding: 10px 25px;
   margin-top: 40px;
-  font-size: 1.4em;
+  font-size: 1em;
   color: white;
 }
 .support {
-  margin-right: 15%;
-  background-color: #0078C7;
+  margin-right: 20%;
 }
 .oppose {
   margin-right: 15%;
-  background-color: #0078C7;
 }
 p {
   text-align: center;
   margin-top: 5px;
 }
 .rowspace {
-  margin-top: 15px;
+  margin-top: 30px;
 }
 img {
 }
@@ -123,4 +126,23 @@ img {
 
 #users-balance .feed, #local-pol-container .feed {
   width:350px;
+}
+.pol-pics {
+  height: 150px;
+  margin: 0 auto;
+}
+.pol-pic {
+  margin-left: 25%;
+}
+span.glyphicon-arrow-up, span.glyphicon-arrow-down {
+  font-size: 1.4em;
+  color: #988f98;
+}
+.arrows {
+  margin-top: 50px;
+  height: 200px;
+}
+a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
+  background-color: #d4d5d3 !important;
+  color: white !important;
 }
