@@ -31,6 +31,10 @@
     <%= f.label "Summary" %><br />
     <%= f.text_area :summary, :style => "width:500px;", :rows => 5 %>
   </div>
+  <div class="field">
+    <%= f.label "Top Event?" %><br />
+    <%= f.check_box :top, {}, "true", "false" %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

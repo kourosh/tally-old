@@ -1,3 +1,14 @@
+<div class="top-story">
+  <div class="breadcrumb">Today's Top Story</div>
+  <h2 class="top-event headliner"><%= @top_event.headline %></h2>
+  <br>
+  <br>
+  <p class="top-event"><%= @top_event.summary %></p>
+  <br>
+  <a href="/events/<%= @top_event.id %>" class="top-event">Read Story</a>
+</div>
+
+
 <% @events.each do |e| %>
   <div class="row rowspace">
     <div class="col-sm-1"></div>

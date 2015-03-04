@@ -28,6 +28,11 @@ body {
 */  /*font-family: "tablet-gothic-condensed", sans-serif;*/
 font-family: 'Open Sans Condensed', sans-serif;
 }
+.top-story {
+  background-color: #f4f4f4;
+  margin: auto -20%;
+  text-align: center;
+}
 .party {
   color: black;
   font-size: 1em;
@@ -44,13 +49,13 @@ font-family: 'Open Sans Condensed', sans-serif;
 .margin-top-50 {
   margin-top: 50px;
 }
-.circle-pic {
-  border-radius: 100%;
-  width: 200px;
-  height: 200px;
-  background-size: cover !important;
-  background-position:50% 50%;
-}
+// .circle-pic {
+//   border-radius: 100%;
+//   width: 200px;
+//   height: 200px;
+//   background-size: cover !important;
+//   background-position:50% 50%;
+// }
 .centered-text {
   margin-left: 50px;
 }
@@ -145,4 +150,37 @@ span.glyphicon-arrow-up, span.glyphicon-arrow-down {
 a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
   background-color: #d4d5d3 !important;
   color: white !important;
+}
+.event-background {
+  padding: 10px;
+  background-color: #f8f8f8;
+}
+.comments {
+  margin: 0 auto;
+  width: 70%;
+}
+.comments > p {
+  text-align: left;
+}
+.comment-button {
+  margin-left: 20px;
+  margin-bottom: 5%;
+}
+.top-event {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.2em;
+  color: white !important;
+}
+.top-story {
+  padding-bottom: 20px;
+}
+.headliner {
+  font-size: 1.5em;
+}
+.breadcrumb {
+  color: white !important;
+  text-align: left;
+  margin-left: 10%;
 }

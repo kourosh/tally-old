@@ -5,28 +5,30 @@
           <p class="party"><%= link_to "#{@event.pol.title}. #{@event.pol.fullname}", pol_path(@event.pol_id) %><br>(<%= @event.pol.party %>) <%= @event.pol.state %></p>
         </div>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9 event-background">
         <h2><a href="<%= @event.source %>"><%= @event.headline %></a></h2>
+        <p><%= @event.summary %></p>
         <div class="button-div">
-          <a href="#" class="btn btn-lg btn-success buttonz support" id="<%= @event.id %>">Support</a>
-          <a href="#" class="btn btn-lg btn-danger buttonz oppose" id="<%= @event.id %>">Oppose</a>
+          <a class="arrows support" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
+          <a class="arrows oppose" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
         </div>
       </div>
     </div>
 
-<ul id="comments">
   <% @comments.each do |comment| %>
-    <li><%= comment.content %></li>
+    <div class="well comments">
+      <p><%= comment.content %></p>
+    </div>
   <% end %>
-</ul>
 
-<h2>New Comment</h2>
-<%= form_for [@event, Comment.new] do |form| %>
-  <div class="formList">
-    <p>
-      <%= form.label :content %>
-      <%= form.text_area :content, :rows => 5 %>
-    </p>
-    <p><%= submit_tag "Add comment" %></p>
-  </div>
-<% end %>
+
+<div class="well comments">
+  <%= form_for [@event, Comment.new] do |form| %>
+    <div class="formList">
+      <p>
+        <%= form.text_area :content, :rows => 2, :style => "width: 70%;" %>
+        <%= submit_tag "Comment", :class => "btn btn-default comment-button" %>
+      </p>
+    </div>
+  <% end %>
+</div>
