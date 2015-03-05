@@ -39,3 +39,18 @@ ul.ui-autocomplete {
 .margin-top-50 {
 	margin-top: 50px;
 }
+.ios {
+  margin-top: 10px;
+  margin-right: 0px;
+  height: 25px;
+}
+.logos {
+	margin-left: -50px;
+}
+#app {
+  margin-top: 15px;
+  margin-left: 70px;
+}
+.tally-center {
+	text-align: center;
+}

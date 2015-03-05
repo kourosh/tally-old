@@ -9,6 +9,7 @@
   # GET /events.json
   def index
     @events = Event.includes(:pol).all
+    @top_event = Event.where(top: true).order('id asc').limit(1).first
     respond_to do |format|
       format.html
     end
@@ -41,6 +42,7 @@
   # GET /events/1.json
   def show
     @event = Event.find(params[:id])
+    @comments = @event.comments
     respond_to do |format|
       format.html
     end
@@ -87,7 +89,7 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:headline, :source, :pol_id)
+      params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
     end
 
     # protected

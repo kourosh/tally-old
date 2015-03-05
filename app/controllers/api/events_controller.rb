@@ -4,7 +4,7 @@ module API
     # before_action :authenticate, except: [:index, :new, :create, :show, :edit, :update, :destroy]
 
 
-    
+
   # GET /events
   # GET /events.json
   def index
@@ -78,20 +78,20 @@ module API
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:headline, :source, :pol_id)
+      params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
     end
 
     # protected
     # def authenticate
     #   authenticate_token || render_unauthorized
     # end
-    
+
     # def authenticate_token
     #   authenticate_or_request_with_http_token('posts') do |token, options|
     #     User.find_by(auth_token: token)
     #   end
     # end
-    
+
     # def render_unauthorized
     #   self.headers['WWW-Authenticate'] = 'Token realm="posts"'
     #   respond_to do |format|

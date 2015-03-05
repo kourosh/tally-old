@@ -40,6 +40,10 @@
   # GET /pols/1.json
   def show
     @pol = Pol.includes(:events).find(params[:id])
+    if current_user
+      @favorited = current_user.favorites.where(favorited_id: @pol.id).first
+    end
+    @comments = @pol.comments
     respond_to do |format|
       format.html
     end

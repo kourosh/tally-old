@@ -73,3 +73,5 @@ gem "figaro"
 gem 'braintree'
 
 gem 'devise'
+
+gem 'binding_of_caller'

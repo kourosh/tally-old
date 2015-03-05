@@ -1,22 +1,9 @@
-<!-- <p id="notice"><%= notice %></p>
-<img src="/assets/200x250/<%= @pol.bioguide_id %>.jpg" />
-<h1><% if @pol.title == "Rep" %>Rep. <% else %>Sen. <% end %><%= @pol.firstname %> <%= @pol.lastname %></h1>
-<h2><% if @pol.party == "D" %>Democrat<% elsif @pol.party =="R" %>Republican<% else %>Independent<% end %></h2>
-<h2><% if @pol.district != 0 %>
-			District <%= @pol.district %>,
-			<% end %>
-<h2><%= @pol.state %></h2>
-<h2><% if @pol.in_office %>In office<% else %>Not in office<% end %></h2>
-<p><%= link_to 'Edit', edit_pol_path(@pol) %> |
-<%= link_to 'Back', pols_path %></p>
 
- -->
- <div class="feed well side" style="margin-top:70px">
+ <div class="feed" style="margin-top:70px">
     <div class="Polcenter">
       <div class="row">
         <div class="col-md-2">
-          <div class="circle-pic" style="background:url(/assets/200x250/<%= @pol.bioguide_id %>.jpg) no-repeat;">
-          </div>
+          <img src="/assets/200x250/<%= @pol.bioguide_id %>.jpg" class="img-responsive pol-pic">
           <h3 class="centered-text"><%= @pol.fullname %></h3>
           <h4 class="centered-text">
             <% if @pol.party == "D" %>
@@ -32,22 +19,29 @@
             Senator
             <% end %>
           </h4>
+          <% if current_user %>
+            <% if @favorited  %>
+              <%= link_to "Un-favorite", pol_remove_favorites_path(@pol, @favorited), class: "btn btn-default favorite centered-text", :method => :delete %>
+            <% else %>
+              <%= link_to "Favorite", pol_favorites_path(@pol), class: "btn btn-default favorite centered-text", :method => :post %>
+            <% end %>
+          <% end %>
         </div>
 
 
       <div class="col-md-1"></div>
-      <div class="col-md-9">
+      <div class="col-md-9  side">
         <% @pol.events.each do |e| %>
-        <h2><a href="/api/events/<%= e.id %>"><%= e.headline %></a></h2>
+        <h2><a href="/events/<%= e.id %>"><%= e.headline %></a></h2>
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-2">
-            <h3>Support</h3>
+            <h3><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</h3>
             <h4>$ <%= e.balance_for %></h4>
           </div>
           <div class="col-md-6"></div>
           <div class="col-md-2">
-            <h3>Oppose</h3>
+            <h3><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</h3>
             <h4>$ <%= e.balance_against %></h4>
           </div>
           <div class="col-md-1"></div>
