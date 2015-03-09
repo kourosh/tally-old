@@ -2,6 +2,8 @@ class Pol < ActiveRecord::Base
 	has_many :events
 	has_many :comments, as: :commentable
 	has_many :favorites, as: :favorited
+	has_many :pac_pols
+  has_many :pacs, through: :pac_pols
 	# def fullname
 	# 	"#{firstname} #{lastname}"
 	# end
