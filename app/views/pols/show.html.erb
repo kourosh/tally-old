@@ -26,8 +26,10 @@
               <%= link_to "Favorite", pol_favorites_path(@pol), class: "btn btn-default favorite centered-text", :method => :post %>
             <% end %>
           <% end %>
-          <% if current_user.admin? %>
-            <%= link_to "Delete pol", pol_path(@pol), class: "btn btn-default centered-text", :method => :delete %>
+          <% if current_user %>
+            <% if current_user.admin? %>
+              <%= link_to "Delete pol", pol_path(@pol), class: "btn btn-default centered-text", :method => :delete %>
+            <% end %>
           <% end %>
         </div>
 
