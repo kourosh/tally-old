@@ -17,8 +17,7 @@
   def new
     if current_user.admin?
       @pol = Pol.new
-      @pacs_for = Pac.all
-      @pacs_against = Pac.all
+      @pacs = Pac.all
     end
   end
 
@@ -26,7 +25,17 @@
   # POST /pols.json
   def create
     if current_user.admin?
-      @pol = Pol.new(pol_params)
+      @pol = Pol.new params.require(:pol).permit(:firstname, :lastname)
+
+      params["pol"]["pac_ids"]["for_id"] = params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+      params["pol"]["pac_ids"]["against_id"] = params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+      params["pol"]["pac_ids"]["for_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: true)
+      end
+      params["pol"]["pac_ids"]["against_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: false)
+      end
 
       respond_to do |format|
         if @pol.save
@@ -65,6 +74,9 @@
     # params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
     # params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
     if current_user.admin?
+      pacs = PacPol.where(pol_id: @pol.id)
+      pacs.destroy_all
+
       params["pol"]["pac_ids"]["for_id"] = params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
       params["pol"]["pac_ids"]["against_id"] = params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
 

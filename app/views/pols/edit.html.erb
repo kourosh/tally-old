@@ -3,8 +3,8 @@
 	<p>First Name: <%= f.text_field(:firstname) %></p>
 	<p>Last Name: <%= f.text_field(:lastname) %></p>
   <%= f.fields_for :pac_ids do |pac| %>
-    <%= pac.collection_select(:for_id, @pacs, "id", "committee_name", {}, multiple: true) %>
-    <%= pac.collection_select(:against_id, @pacs, "id", "committee_name", {}, multiple: true) %>
+    <p>Pacs For: <br><%= pac.collection_select(:for_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
+    <p>Pac Against: <br><%= pac.collection_select(:against_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
   <% end %>
 
 
