@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309223323) do
+ActiveRecord::Schema.define(version: 20150310190518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 20150309223323) do
     t.integer  "pol_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "support"
   end
 
   add_index "pac_pols", ["pac_id"], name: "index_pac_pols_on_pac_id", using: :btree

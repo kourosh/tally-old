@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :transactions
 
 	namespace :api, path: 'api/' do
-   resources :search_suggestions, :users
+   resources :search_suggestions, :users, :pacs
    resources :pols, :events do
     post '/comments' => 'comments#create', as: 'comments'
     post '/favorites' => 'favorites#create', as: 'favorites'
@@ -24,6 +24,8 @@ Rails.application.routes.draw do
  resources :search_suggestions, except: [:new, :edit]
 
  resources :users, except: [:new, :edit]
+
+ resources :pacs
 
  resources :pols do
   post '/comments' => 'comments#create', as: 'comments'

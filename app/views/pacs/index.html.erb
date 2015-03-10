@@ -1,0 +1,14 @@
+<div class="centered-text">
+  <% @pacs.each do |e| %>
+    <h5><%= e.committee_id %></h5>
+    <h5><%= e.committee_name %></h5>
+    <h5><%= e.affiliated_party %></h5>
+    <p><%= link_to 'Show', e %>
+    <%= link_to 'Edit', edit_pac_path(e) %>
+    <%= link_to 'Destroy', e, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <br>
+  <% end %>
+</div>
+<div>
+  <%= link_to 'New Pac', new_pac_path %>
+</div>
