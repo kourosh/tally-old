@@ -1,0 +1,12 @@
+<div class="centered-text">
+  <h5><%= @pac.committee_id %></h5>
+  <h5><%= @pac.committee_name %></h5>
+  <h5><%= @pac.affiliated_party %></h5>
+  <% if current_user %>
+    <% if current_user.admin? %>
+      <%= link_to "Delete pac", pac_path(@pac), :method => :delete %>
+    <% end %>
+  <% end %>
+  <br>
+  <%= link_to 'Back', pacs_path %>
+</div>

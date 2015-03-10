@@ -17,6 +17,7 @@
   def new
     if current_user.admin?
       @pol = Pol.new
+      @pacs = Pac.all
     end
   end
 
@@ -24,7 +25,17 @@
   # POST /pols.json
   def create
     if current_user.admin?
-      @pol = Pol.new(pol_params)
+      @pol = Pol.new params.require(:pol).permit(:firstname, :lastname)
+
+      params["pol"]["pac_ids"]["for_id"] = params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+      params["pol"]["pac_ids"]["against_id"] = params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+      params["pol"]["pac_ids"]["for_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: true)
+      end
+      params["pol"]["pac_ids"]["against_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: false)
+      end
 
       respond_to do |format|
         if @pol.save
@@ -53,15 +64,30 @@
   def edit
     if current_user.admin?
       @pol = Pol.find(params[:id])
+      @pacs = Pac.all
     end
   end
 
   # PATCH/PUT /pols/1
   # PATCH/PUT /pols/1.json
   def update
+    # params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+    # params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
     if current_user.admin?
+      pacs = PacPol.where(pol_id: @pol.id)
+      pacs.destroy_all
+
+      params["pol"]["pac_ids"]["for_id"] = params["pol"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+      params["pol"]["pac_ids"]["against_id"] = params["pol"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+      params["pol"]["pac_ids"]["for_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: true)
+      end
+      params["pol"]["pac_ids"]["against_id"].each do |pac_id|
+        PacPol.create(pac_id: pac_id, pol_id: @pol.id, support: false)
+      end
       respond_to do |format|
-        if @pol.update(pol_params)
+        if @pol.update params.require(:pol).permit(:firstname, :lastname)
           format.html { redirect_to @pol, notice: 'Successfully updated politician.' }
         else
           format.html { render :edit }
@@ -89,7 +115,7 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pol_params
-      params.require(:pol).permit(:firstname, :lastname, :in_office)
+      params.require(:pol).permit(:firstname, :lastname, pac_ids: {for_id: [], against_id: []})
     end
 
     # protected
