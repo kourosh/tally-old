@@ -74,6 +74,6 @@ class PacsController < ApplicationController
     end
 
     def pac_params
-      params.require(:pac).permit(:committee_id, :committee_name, :affiliated_party)
+      params.require(:pac).permit(:committee_id, :committee_name, :affiliated_party, :pac_email)
     end
 end

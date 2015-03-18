@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
   <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
-  <script src="//use.typekit.net/jkx0vob.js"></script>
+  <script src="//use.typekit.net/snz4ilo.js"></script>
   <script>try{Typekit.load();}catch(e){}</script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -47,18 +47,18 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% if !user_signed_in? %>
-          <li><a class="not-signedin" href="/users/sign_up">Signup</a></li>
-          <li><a class="not-signedin" href="/users/sign_in">Login</a></li>
+          <li><a class="not-signedin body-font" href="/users/sign_up">Signup</a></li>
+          <li><a class="not-signedin body-font" href="/users/sign_in">Login</a></li>
           <% end %>
           <% if user_signed_in? %>
           <li class="dropdown signedin">
-            <a href="#" class="dropdown-toggle" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle body-font" data-target="dropdown-menu" data-toggle="dropdown" role="button" aria-expanded="true">Account<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li><a href="#account">Account</a></li>
-              <li><a href="#settings">Settings</a></li>
+              <li><a href="#account" class="body-font">Account</a></li>
+              <li><a href="#settings" class="body-font">Settings</a></li>
             </ul>
           </li>
-          <li class="signedin"><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+          <li class="signedin body-font"><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
           <% end %>
         </ul>
       </div>

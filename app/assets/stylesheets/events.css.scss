@@ -26,7 +26,7 @@ ul.ui-autocomplete {
 body {
 /*  background-color: #23242E;
 */  /*font-family: "tablet-gothic-condensed", sans-serif;*/
-font-family: 'Open Sans Condensed', sans-serif;
+
 }
 .top-story {
   background-color: #f4f4f4;
@@ -34,11 +34,15 @@ font-family: 'Open Sans Condensed', sans-serif;
   text-align: center;
 }
 .party {
-  color: black;
+  color: #4E4E4E;
   font-size: 1em;
+  font-family: Merriweather, Georgia, serif;
 }
-#event-title {
-  font-size: 1.3em;
+.event-title {
+  font-size: 1.7em;
+  line-height: 1.3em;
+  font-family: Prenton Condensed, Impact, sans-serif;
+  color: #969696;
 }
 .sticky {
   position:fixed;
@@ -57,7 +61,7 @@ font-family: 'Open Sans Condensed', sans-serif;
 //   background-position:50% 50%;
 // }
 .centered-text {
-  margin-left: 50px;
+  text-align: center;
 }
 .well {
 /*  background-color: #383A44;
@@ -83,6 +87,7 @@ font-family: 'Open Sans Condensed', sans-serif;
 }
 .side {
   background-color: #F5F5F5;
+  border-radius: 5px;
 }
 
 .navbar {
@@ -133,11 +138,12 @@ img {
   width:350px;
 }
 .pol-pics {
-  height: 150px;
+  height: 175px;
+  border-radius: 5px;
   margin: 0 auto;
 }
 .pol-pic {
-  margin-left: 25%;
+  border-radius: 5px;
 }
 span.glyphicon-arrow-up, span.glyphicon-arrow-down {
   font-size: 1.4em;
@@ -154,9 +160,11 @@ a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
 .event-background {
   padding: 10px;
   background-color: #f8f8f8;
+  border-radius: 5px;
 }
 .comments {
   margin: 0 auto;
+  margin-top: 5%;
   width: 70%;
 }
 .comments > p {
@@ -172,15 +180,48 @@ a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
   text-align: center;
   font-size: 1.2em;
   color: white !important;
+  font-family: Merriweather, Georgia, serif;
 }
 .top-story {
   padding-bottom: 20px;
 }
 .headliner {
-  font-size: 1.5em;
+  font-size: 5.2em;
+  font-family: Prenton Condensed, Impact, sans-serif;
+}
+.summary {
+  font-family: Merriweather, Georgia, serif;
 }
 .breadcrumb {
   color: white !important;
   text-align: left;
   margin-left: 10%;
+}
+span {
+  font-family: Merriweather, Georgia, serif;
+}
+.pol-name {
+  font-size: 1.2em;
+  font-family: Merriweather, Georgia, serif;
+}
+.pol-info {
+  line-height: .9em;
+  font-size: .9em;
+  font-family: Merriweather, Georgia, serif;
+}
+.favorite {
+  margin-left: 21%;
+}
+.headline {
+  margin: 0 10px;
+}
+.centered {
+  text-align: center;
+  margin: 0 auto;
+}
+.space {
+  padding: 2%;
+}
+.delete {
+  margin-left: 26%;
 }
