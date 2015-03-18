@@ -50,7 +50,20 @@ ul.ui-autocomplete {
 #app {
   margin-top: 15px;
   margin-left: 70px;
+  font-size: 1.2em;
 }
 .tally-center {
 	text-align: center;
+	font-family: Prenton Condensed, Impact, sans-serif;
+	font-size: 2em;
+}
+.body-font {
+	font-family: Merriweather, Georgia, serif;
+	font-size: 1.2em;
+}
+h1, h2, h3, h4, h5 {
+	font-family: Prenton Condensed, Impact, sans-serif;
+}
+p, span {
+	font-family: Merriweather, Georgia, serif;
 }
