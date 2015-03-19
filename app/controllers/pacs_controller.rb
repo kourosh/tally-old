@@ -24,6 +24,7 @@ class PacsController < ApplicationController
 
       respond_to do |format|
         if @pac.save
+          UserMailer.pac_signup(@pac).deliver
           format.html { redirect_to @pac, notice: 'Successfully created pac.' }
         else
           format.html { render :new }
