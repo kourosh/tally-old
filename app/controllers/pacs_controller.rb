@@ -16,7 +16,11 @@ class PacsController < ApplicationController
 
   def create
     if current_user.admin?
-      @pac = Pac.new(pac_params)
+      signup_token = get_random_token
+
+      pac_parameters = pac_params.merge(signup_token: signup_token)
+
+      @pac = Pac.new(pac_parameters)
 
       respond_to do |format|
         if @pac.save
@@ -48,7 +52,7 @@ class PacsController < ApplicationController
   def update
     if current_user.admin?
       respond_to do |format|
-        if @pac.update(pac_params)
+        if @pac.update_attributes(pac_params)
           format.html { redirect_to @pac, notice: 'Successfully updated pac.' }
         else
           format.html { render :edit }

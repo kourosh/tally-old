@@ -10,4 +10,10 @@ class ApplicationController < ActionController::Base
     Braintree::Configuration.public_key = ENV["braintree_public_key"]
     Braintree::Configuration.private_key = ENV["braintree_private_key"]
   end
+
+  # Get random UUID
+
+  def get_random_token
+    return SecureRandom.uuid
+  end
 end
