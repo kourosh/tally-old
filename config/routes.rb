@@ -25,7 +25,11 @@ Rails.application.routes.draw do
 
  resources :users, except: [:new, :edit]
 
- resources :pacs
+ resources :pacs do
+  collection do
+    get "confirm" => "pacs#confirm"
+  end
+ end
 
  resources :pols do
   post '/comments' => 'comments#create', as: 'comments'

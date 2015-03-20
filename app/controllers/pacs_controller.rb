@@ -72,6 +72,36 @@ class PacsController < ApplicationController
     end
   end
 
+  def confirm
+    if params[:code]
+      request = Typhoeus::Request.new(
+        "https://connect.stripe.com/oauth/token",
+        method: :post,
+        params: {
+          client_secret: "sk_test_EoKLhh6S0Kvb1MFWlr4PrNdi",
+          code: params[:code],
+          grant_type: "authorization_code"
+        }
+      )
+
+      request.run
+
+      stripe_data = JSON.parse(request.response.body)
+
+      stripe_secret_key = stripe_data["access_token"]
+      stripe_publishable_key = stripe_data["stripe_publishable_key"]
+
+      this_pac = Pac.where(signup_token: session[:signup_token]).first
+
+      if this_pac.update_attributes(stripe_secret_key: stripe_secret_key, stripe_publishable_key: stripe_publishable_key)
+        flash[:success] = "Awesome! You're all set to receive payments with Tally"
+      end
+      
+    elsif params[:signup_token]
+      session[:signup_token] = params[:signup_token]
+    end
+  end
+
   private
 
     def set_pac

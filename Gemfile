@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 gem "twitter-bootstrap-rails"
 
+gem "typhoeus"
+
 # Makes cross-origin AJAX possible
 gem 'rack-cors', :require => 'rack/cors'
 

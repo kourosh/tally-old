@@ -1,0 +1,9 @@
+<% if flash[:success] %>
+	<div class="alert alert-success">
+		<%= flash[:success] %>
+	</div>
+<% end %>
+
+<% if params[:signup_token] %>
+	<a href="https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_5rImJlECC8wy3xVXNq8YHAW69ZVFvZdm" class="btn btn-primary">Connect Your Stripe Account</a>
+<% end %>
