@@ -6,9 +6,10 @@ Rails.application.configure do
     port:                 587,
     domain:               'tally.us',
     user_name:            'arun@tally.us',
-    password:             '4uECmExC5LKZUMKQeZTsPg',
+    password:             ENV["mandrill_key"],
     authentication:       'plain',
-    enable_starttls_auto: true  }
+    enable_starttls_auto: true
+  }
 
   # Settings specified here will take precedence over those in config/application.rb.
 

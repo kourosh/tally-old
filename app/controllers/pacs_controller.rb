@@ -96,9 +96,11 @@ class PacsController < ApplicationController
       if this_pac.update_attributes(stripe_secret_key: stripe_secret_key, stripe_publishable_key: stripe_publishable_key)
         flash[:success] = "Awesome! You're all set to receive payments with Tally"
       end
-      
+
     elsif params[:signup_token]
       session[:signup_token] = params[:signup_token]
+    else
+      redirect_to "/"
     end
   end
 
