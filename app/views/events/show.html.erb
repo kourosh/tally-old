@@ -1,21 +1,23 @@
-    <div class="row rowspace">
-      <div class="col-md-3">
-        <div class="pol-pic">
-          <img src="/assets/200x250/<%= @event.pol.bioguide_id %>.jpg" class="img-responsive pol-pic centered">
-          <p class="party pol-name centered space"><%= link_to "#{@event.pol.title}. #{@event.pol.fullname}", pol_path(@event.pol_id) %><br>(<%= @event.pol.party %>) <%= @event.pol.state %></p>
-          <% if current_user %>
-            <% if current_user.admin? %>
-              <%= link_to "Delete event", event_path(@event), class: "btn btn-default centered delete", :method => :delete %>
+    <div class="container">
+      <div class="row rowspace">
+        <div class="col-sm-3">
+          <div class="pol-pic">
+            <img src="/assets/200x250/<%= @event.pol.bioguide_id %>.jpg" class="img-responsive pol-pic centered">
+            <p class="party pol-name centered space"><%= link_to "#{@event.pol.title}. #{@event.pol.fullname}", pol_path(@event.pol_id) %><br>(<%= @event.pol.party %>) <%= @event.pol.state %></p>
+            <% if current_user %>
+              <% if current_user.admin? %>
+                <%= link_to "Delete event", event_path(@event), class: "btn btn-default centered delete", :method => :delete %>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
-      <div class="col-md-9 event-background">
-        <h2><a href="<%= @event.source %>" class="headline"><%= @event.headline %></a></h2>
-        <p><%= @event.summary %></p>
-        <div class="button-div">
-          <a class="arrows support" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
-          <a class="arrows oppose" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
+        <div class="col-sm-9 event-background">
+          <h2><a href="<%= @event.source %>" class="headline"><%= @event.headline %></a></h2>
+          <p><%= @event.summary %></p>
+          <div class="button-div">
+            <a class="arrows support" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
+            <a class="arrows oppose" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
+          </div>
         </div>
       </div>
     </div>

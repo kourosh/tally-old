@@ -8,7 +8,7 @@
   # GET /events
   # GET /events.json
   def index
-    @events = Event.includes(:pol).all.order(created_at: :desc)
+    @events = Event.includes(:pol).all.paginate(:page => params[:page], :per_page => 10).order(created_at: :desc)
     @top_event = Event.where(top: true).order('id asc').limit(1).first
     respond_to do |format|
       format.html

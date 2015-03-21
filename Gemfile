@@ -5,6 +5,12 @@ gem "twitter-bootstrap-rails"
 
 gem "typhoeus"
 
+gem "stripe"
+
+gem 'will_paginate'
+
+gem 'screencap'
+
 # Makes cross-origin AJAX possible
 gem 'rack-cors', :require => 'rack/cors'
 

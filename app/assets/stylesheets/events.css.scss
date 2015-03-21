@@ -30,8 +30,9 @@ body {
 }
 .top-story {
   background-color: #f4f4f4;
-  margin: auto -20%;
   text-align: center;
+  width:100%;
+  color:#333;
 }
 .party {
   color: #4E4E4E;
@@ -175,11 +176,9 @@ a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
   margin-bottom: 5%;
 }
 .top-event {
-  width: 70%;
-  margin: 0 auto;
   text-align: center;
   font-size: 1.2em;
-  color: white !important;
+  color: #999;
   font-family: Merriweather, Georgia, serif;
 }
 .top-story {
