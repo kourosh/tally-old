@@ -30,6 +30,9 @@
 
       respond_to do |format|
         if @event.save
+          screenshot_init = Screencap::Fetcher.new(@event.source)
+          screenshot = screenshot_init.fetch(output: "app/assets/images/screenshots/" + @event.id.to_s + ".png")
+          
           format.html { redirect_to :back, notice: 'Event was successfully created.' }
         else
           format.html { render :new }

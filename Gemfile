@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem "twitter-bootstrap-rails"
 
 gem "typhoeus"
@@ -78,7 +77,6 @@ gem "figaro"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-gem 'braintree'
 
 gem 'devise'
 

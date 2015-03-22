@@ -28,6 +28,7 @@ body {
 */  /*font-family: "tablet-gothic-condensed", sans-serif;*/
 
 }
+
 .top-story {
   background-color: #f4f4f4;
   text-align: center;
@@ -111,7 +112,6 @@ body {
   margin-right: 15%;
 }
 p {
-  text-align: center;
   margin-top: 5px;
 }
 .rowspace {
@@ -159,7 +159,7 @@ a:hover, span.glyphicon-arrow-up:hover, span.glyphicon-arrow-down:hover {
   color: white !important;
 }
 .event-background {
-  padding: 10px;
+  padding: 20px;
   background-color: #f8f8f8;
   border-radius: 5px;
 }
@@ -211,9 +211,11 @@ span {
 .favorite {
   margin-left: 21%;
 }
+
 .headline {
   margin: 0 10px;
 }
+
 .centered {
   text-align: center;
   margin: 0 auto;
