@@ -46,6 +46,9 @@
   def show
     @event = Event.find(params[:id])
     @comments = @event.comments
+
+    @screenshot = File.exists?("app/assets/images/screenshots/" + @event.id.to_s + ".png")
+
     respond_to do |format|
       format.html
     end

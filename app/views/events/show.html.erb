@@ -13,7 +13,12 @@
         </div>
         <div class="col-sm-9 event-background">
           <h2><a href="<%= @event.source %>" class="headline"><%= @event.headline %></a></h2>
-          <p><%= @event.summary %></p>
+          <% if @screenshot %>
+            <div class="margin-top-20">
+              <a href="#" data-toggle="modal" data-target="#screenshot-modal">View Article Screenshot</a>
+            </div>
+          <% end %>
+          <p class="margin-top-20"><%= @event.summary %></p>
           <div class="button-div">
             <a class="arrows support" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
             <a class="arrows oppose" href="#" id="<%= @event.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
@@ -39,3 +44,22 @@
     </div>
   <% end %>
 </div>
+
+<% if @screenshot %>
+  <div id="screenshot-modal" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Screenshot</h4>
+        </div>
+        <div class="modal-body">
+          <%= image_tag("screenshots/" + @event.id.to_s + ".png", class: "img-responsive") %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Done</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<% end %>
