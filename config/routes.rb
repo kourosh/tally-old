@@ -5,7 +5,11 @@ Rails.application.routes.draw do
 
     resources :transactions
 
-    resources :payment_methods
+    resources :payment_methods do
+        collection do
+            get "/check" => "payment_methods#check"
+        end
+    end
 
     namespace :api, path: 'api/' do
         resources :search_suggestions, :users, :pacs

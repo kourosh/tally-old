@@ -1,4 +1,10 @@
 <div class="container">
+	<% if params[:error] && params[:error] =="no_method" %>
+		<div class="alert alert-danger">
+			Please add a payment option before you continue.
+		</div>
+	<% end %>
+
 	<div class="row">
 		<div class="col-sm-6">
 			<div id="stripe-error" class="alert alert-danger">

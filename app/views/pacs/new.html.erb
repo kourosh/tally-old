@@ -1,5 +1,46 @@
-<h1>New Pac</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-6">
+			<h1>New Pac</h1>
 
-<%= render 'form' %>
+			<%= form_for(@pac) do |f| %>
+			<% if @pac.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@pac.errors.count, "error") %> prohibited this pac from being saved:</h2>
 
-<%= link_to 'Back', pacs_path %>
+				<ul>
+					<% @pac.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+			<% end %>
+
+			<div class="field">
+				<%= f.label :committee_id %><br>
+				<%= f.text_field :committee_id, :style => "width:500px;" %>
+			</div>
+			<div class="field">
+				<%= f.label :committee_name %><br>
+				<%= f.text_field :committee_name, :style => "width:500px;" %>
+			</div>
+			<div class="field">
+				<%= f.label :affiliated_party %><br />
+				<%= f.text_field :affiliated_party, :style => "width:500px;"  %>
+			</div>
+			<div class="field">
+				<%= f.label :pac_email %><br />
+				<%= f.text_field :pac_email, :style => "width:500px;"  %>
+			</div>
+			<div class="actions">
+				<%= f.submit %>
+			</div>
+			<% end %>
+
+			<%= link_to 'Back', pacs_path %>
+		</div>
+		<div class="col-sm-6">
+			Hey
+		</div>
+	</div>
+</div>

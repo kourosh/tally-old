@@ -88,6 +88,8 @@ class UsersController < ApplicationController
         if payment_method
             customer = Stripe::Customer.retrieve(payment_method.customer_id)
             @payment_info = customer.sources.data[0]
+        else
+            redirect_to "/payment_methods/new"
         end
     end
 

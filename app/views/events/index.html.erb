@@ -14,7 +14,7 @@
 
 <% @events.each do |e| %>
 <div class="container">
-    <div class="row rowspace">
+    <div class="row rowspace" id="event<%= e.id %>">
         <div class="col-sm-1"></div>
         <div class="col-sm-8">
             <h3 class="event-title"><a href="events/<%= e.id %>" class="event-title"><%= e.headline %></a></h3>
@@ -43,42 +43,6 @@
     <%= will_paginate(@events) %>
 </div>
 
-<div id="support-modal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Support</h4>
-            </div>
-            <div class="modal-body">
-                <div>
-                    You have chosen to support this politician. Please select the political action committee you want to send the funds to and the amount.
-                </div>
+<%= render "partials/modals/support_modal" %>
 
-                <div class="margin-top-20">
-                    <select class="form-control">
-                        <option>Democratic Republic of California</option>
-                    </select>
-                </div>
-
-                <div class="row margin-top-20">
-                    <div class="col-sm-6">
-                        <select class="form-control">
-                            <option value="5">$5 USD</option>
-                            <option value="10">$10 USD</option>
-                            <option value="15">$15 USD</option>
-                            <option value="20">$20 USD</option>
-                        </select>
-                    </div>
-                    <div class="col-sm-6">
-                        <input type="tel" placeholder="Other Ex: 50" class="form-control" />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success">Support</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<%= render "partials/modals/oppose_modal" %>
