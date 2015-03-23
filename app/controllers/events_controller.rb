@@ -19,6 +19,7 @@
   def new
     if current_user.admin?
       @event = Event.new
+      @pacs = Pac.all
     end
   end
 
@@ -26,13 +27,23 @@
   # POST /events.json
   def create
     if current_user.admin?
-      @event = Event.new(event_params)
+      @event = Event.new params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
+
+      params["event"]["pac_ids"]["for_id"] = params["event"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+      params["event"]["pac_ids"]["against_id"] = params["event"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+      params["event"]["pac_ids"]["for_id"].each do |pac_id|
+        EventPac.create(pac_id: pac_id, event_id: @event.id, support: true)
+      end
+      params["event"]["pac_ids"]["against_id"].each do |pac_id|
+        EventPac.create(pac_id: pac_id, event_id: @event.id, support: false)
+      end
 
       respond_to do |format|
         if @event.save
           screenshot_init = Screencap::Fetcher.new(@event.source)
           screenshot = screenshot_init.fetch(output: "app/assets/images/screenshots/" + @event.id.to_s + ".png")
-          
+
           format.html { redirect_to :back, notice: 'Event was successfully created.' }
         else
           format.html { render :new }
@@ -59,6 +70,7 @@
   def edit
     if current_user.admin?
       @event = Event.find(params[:id])
+      @pacs = Pac.all
     end
   end
 
@@ -66,8 +78,20 @@
   # PATCH/PUT /events/1.json
   def update
     if current_user.admin?
+      pacs = EventPac.where(event_id: @event.id)
+      pacs.destroy_all
+
+      params["event"]["pac_ids"]["for_id"] = params["event"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+      params["event"]["pac_ids"]["against_id"] = params["event"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+      params["event"]["pac_ids"]["for_id"].each do |pac_id|
+        EventPac.create(pac_id: pac_id, event_id: @event.id, support: true)
+      end
+      params["event"]["pac_ids"]["against_id"].each do |pac_id|
+        EventPac.create(pac_id: pac_id, event_id: @event.id, support: false)
+      end
       respond_to do |format|
-        if @event.update(event_params)
+        if @event.update params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
           format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         else
           format.html { render :edit }
@@ -95,7 +119,7 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
+      params.require(:event).permit(:headline, :source, :pol_id, :summary, :top, pac_ids: {for_id: [], against_id: []})
     end
 
     # protected

@@ -39,6 +39,10 @@
           <%= f.label "Top Event?" %><br />
           <%= f.check_box :top, {}, "true", "false" %>
         </div>
+        <%= f.fields_for :pac_ids do |pac| %>
+          <p>Pacs For: <br><%= pac.collection_select(:for_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
+          <p>Pac Against: <br><%= pac.collection_select(:against_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
+        <% end %>
         <div class="actions">
           <%= f.submit %>
         </div>
