@@ -1,44 +1,70 @@
 <% if @top_event %>
-  <div class="top-story">
+<div class="top-story">
     <div class="container">
-      <h2 class="top-event headliner"><%= @top_event.headline %></h2>
-      <br>
-      <br>
-      <p class="top-event summary"><%= @top_event.summary %></p>
-      <br>
-      <a href="/events/<%= @top_event.id %>" class="top-event">Read Story</a>
+        <h2 class="top-event headliner"><%= @top_event.headline %></h2>
+        <br>
+        <br>
+        <p class="top-event summary"><%= @top_event.summary %></p>
+        <br>
+        <a href="/events/<%= @top_event.id %>" class="top-event">Read Story</a>
     </div>
-  </div>
+</div>
 <% end %>
 
 
 <% @events.each do |e| %>
-  <div class="container">
+<div class="container">
     <div class="row rowspace">
-      <div class="col-sm-1"></div>
-      <div class="col-sm-8">
-        <h3 class="event-title"><a href="events/<%= e.id %>" class="event-title"><%= e.headline %></a></h3>
-        <div class="button-div">
-          <a class="arrows support body-font" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
-          <a class="arrows oppose body-font" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-8">
+            <h3 class="event-title"><a href="events/<%= e.id %>" class="event-title"><%= e.headline %></a></h3>
+            <div class="button-div">
+                <a class="arrows support body-font" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"> Support</span></a>
+                <a class="arrows oppose body-font" href="#" id="<%= e.id %>"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"> Oppose</span></a>
+            </div>
         </div>
-      </div>
 
-      <div class="col-sm-3">
-        <img src="/assets/200x250/<%= e.pol.bioguide_id %>.jpg" class="img-responsive pol-pics">
-        <p class="party body-font"><a href="pols/<%= e.pol_id %>" class="party"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
-        <% if current_user %>
-          <% if current_user.admin? %>
+        <div class="col-sm-3">
+            <img src="/assets/200x250/<%= e.pol.bioguide_id %>.jpg" class="img-responsive pol-pics">
+            <p class="party body-font"><a href="pols/<%= e.pol_id %>" class="party"><%= e.pol.title %>. <%= e.pol.fullname %></a><br>(<%= e.pol.party %>) <%= e.pol.state %></p>
+            <% if current_user %>
+            <% if current_user.admin? %>
             <%= link_to "Delete event", event_path(e), class: "btn btn-default centered-text delete", :method => :delete %>
-          <% end %>
-        <% end %>
-      </div>
+            <% end %>
+            <% end %>
+        </div>
 
     </div>
     <hr>
-  </div>
+</div>
 <% end %>
 
 <div class="container txt-center">
-  <%= will_paginate(@events) %>
+    <%= will_paginate(@events) %>
 </div>
+
+<div id="contribute-modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Contribute</h4>
+            </div>
+            <div class="modal-body">
+                <div>
+                    Your donation will go to some stupid politician.
+                </div>
+
+                <div class="row margin-top-20">
+                    <div class="col-sm-6">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
