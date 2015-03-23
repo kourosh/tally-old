@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323171000) do
+ActiveRecord::Schema.define(version: 20150323224406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 20150323171000) do
   add_index "comments", ["child_id"], name: "index_comments_on_child_id", using: :btree
   add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
+  create_table "event_pacs", force: true do |t|
+    t.integer  "pac_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "support"
+  end
+
+  add_index "event_pacs", ["event_id"], name: "index_event_pacs_on_event_id", using: :btree
+  add_index "event_pacs", ["pac_id"], name: "index_event_pacs_on_pac_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "headline"
@@ -102,6 +113,12 @@ ActiveRecord::Schema.define(version: 20150323171000) do
     t.string   "stripe_publishable_key"
     t.string   "signup_token"
     t.string   "pac_email"
+    t.string   "ideology"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "affiliated_candidate"
   end
 
   create_table "payment_methods", force: true do |t|

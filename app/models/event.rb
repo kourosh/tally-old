@@ -4,6 +4,8 @@ class Event < ActiveRecord::Base
 	has_many :transactions
 	has_many :comments, as: :commentable
 	has_many :favorites, as: :favorited
+	has_many :event_pacs, dependent: :destroy
+  has_many :pacs, through: :event_pacs
 	# before_create :set_auth_token
 
 	def pol_fullname

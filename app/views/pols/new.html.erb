@@ -35,10 +35,7 @@
   <p>Current Office: <%= f.text_field(:current_office) %></p>
   <p>Personal Website: <%= f.text_field(:personal_website) %></p>
   <p>Primary Donation Website: <%= f.text_field(:primary_donation_website) %></p>
-  <%= f.fields_for :pac_ids do |pac| %>
-    <p>Pacs For: <br><%= pac.collection_select(:for_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
-    <p>Pac Against: <br><%= pac.collection_select(:against_id, @pacs, "id", "committee_name", {}, multiple: true) %></p>
-  <% end %>
+
 
 
   <p><%= submit_tag("Create Politician") %></p>
