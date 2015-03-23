@@ -19,8 +19,10 @@ function checkPaymentMethod(done) {
 $(document).on("click", "a.support", function(event) {
 	event.preventDefault();
 
+	var that = this;
+
 	checkPaymentMethod(function() {
-		localStorage.setItem("event_id", $(this).attr("id"));
+		localStorage.setItem("event_id", $(that).attr("id"));
 
 		$("#support-modal").modal("show");
 	});
@@ -37,8 +39,10 @@ $(document).on("click", "#support-confirm-button", function() {
 $(document).on("click", "a.oppose", function(event) {
 	event.preventDefault();
 
+	var that = this;
+
 	checkPaymentMethod(function() {
-		localStorage.setItem("event_id", $(this).attr("id"));
+		localStorage.setItem("event_id", $(that).attr("id"));
 
 		$("#oppose-modal").modal("show");
 	});
