@@ -26,6 +26,17 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
 
+    charge = Stripe::Charge.create({
+        :amount => 1000,
+        :currency => "usd",
+        :source => get_stripe_customer_id,
+        :description => "Tally Contribution",
+        :application_fee => 100
+    },
+    {
+        :stripe_account => Pac.find(params[:pac_id]).stripe_secret_key
+    })
+
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }

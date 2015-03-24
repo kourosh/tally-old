@@ -6,7 +6,7 @@ Rails.application.configure do
     port:                 587,
     domain:               'tally.us',
     user_name:            'arun@tally.us',
-    password:             ENV["mandrill_key"],
+    password:             Rails.application.secrets.mandrill_key,
     authentication:       'plain',
     enable_starttls_auto: true
   }

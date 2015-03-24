@@ -29,18 +29,21 @@
     if current_user.admin?
       @event = Event.new params.require(:event).permit(:headline, :source, :pol_id, :summary, :top)
 
-      params["event"]["pac_ids"]["for_id"] = params["event"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
-      params["event"]["pac_ids"]["against_id"] = params["event"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
-
-      params["event"]["pac_ids"]["for_id"].each do |pac_id|
-        EventPac.create(pac_id: pac_id, event_id: @event.id, support: true)
-      end
-      params["event"]["pac_ids"]["against_id"].each do |pac_id|
-        EventPac.create(pac_id: pac_id, event_id: @event.id, support: false)
-      end
-
       respond_to do |format|
         if @event.save
+
+          #Creating EventPac association
+
+          params["event"]["pac_ids"]["for_id"] = params["event"]["pac_ids"]["for_id"].reject(&:empty?).map(&:to_i)
+          params["event"]["pac_ids"]["against_id"] = params["event"]["pac_ids"]["against_id"].reject(&:empty?).map(&:to_i)
+
+          params["event"]["pac_ids"]["for_id"].each do |pac_id|
+            EventPac.create(pac_id: pac_id, event_id: @event.id, support: true)
+          end
+          params["event"]["pac_ids"]["against_id"].each do |pac_id|
+            EventPac.create(pac_id: pac_id, event_id: @event.id, support: false)
+          end
+
           screenshot_init = Screencap::Fetcher.new(@event.source)
           screenshot = screenshot_init.fetch(output: "app/assets/images/screenshots/" + @event.id.to_s + ".png")
 
@@ -109,6 +112,20 @@
         format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
       end
     end
+  end
+
+  def get_info
+    event = Event.find(params[:event_id])
+
+    pacs = EventPac.where(event_id: event.id, support: params[:support])
+
+    pacs_info = []
+
+    pacs.each do |pac|
+      pacs_info << Pac.select(:id, :committee_name).find(pac.pac_id)
+    end
+
+    render :json => { result: "ok", pacs: pacs_info }
   end
 
   private

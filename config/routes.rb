@@ -25,6 +25,10 @@ Rails.application.routes.draw do
         post '/comments' => 'comments#create', as: 'comments'
         post '/favorites' => 'favorites#create', as: 'favorites'
         delete '/favorites/:id' => 'favorites#destroy', as: 'remove_favorites'
+
+        collection do
+            post '/get_info' => 'events#get_info'
+        end
     end
 
     resources :search_suggestions, except: [:new, :edit]
