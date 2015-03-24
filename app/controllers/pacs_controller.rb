@@ -78,7 +78,7 @@ class PacsController < ApplicationController
         "https://connect.stripe.com/oauth/token",
         method: :post,
         params: {
-          client_secret: "sk_test_EoKLhh6S0Kvb1MFWlr4PrNdi",
+          client_secret: Rails.application.secrets.stripe_sk,
           code: params[:code],
           grant_type: "authorization_code"
         }
@@ -90,10 +90,11 @@ class PacsController < ApplicationController
 
       stripe_secret_key = stripe_data["access_token"]
       stripe_publishable_key = stripe_data["stripe_publishable_key"]
+      stripe_user_id = stripe_data["stripe_user_id"]
 
       this_pac = Pac.where(signup_token: session[:signup_token]).first
 
-      if this_pac.update_attributes(stripe_secret_key: stripe_secret_key, stripe_publishable_key: stripe_publishable_key)
+      if this_pac.update_attributes(stripe_secret_key: stripe_secret_key, stripe_publishable_key: stripe_publishable_key, stripe_user_id: stripe_user_id)
         flash[:success] = "Awesome! You're all set to receive payments with Tally"
       end
 

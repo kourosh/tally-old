@@ -17,6 +17,8 @@ function checkPaymentMethod(done) {
 //Get information about event for modal windows
 
 function getEventInfo(eventId, support, appendSelector, modalSelector) {
+	$(appendSelector).html("");
+
 	$.ajax({
 		type: "POST",
 		url: "/events/get_info",
@@ -26,7 +28,7 @@ function getEventInfo(eventId, support, appendSelector, modalSelector) {
 		},
 		success: function(data) {
 			data.pacs.forEach(function(pac) {
-				$(appendSelector).html("").append("<option value='" + pac.id + "'>" + pac.committee_name + "</option>");
+				$(appendSelector).append("<option value='" + pac.id + "'>" + pac.committee_name + "</option>");
 			});
 
 			$(modalSelector).modal("show");
@@ -39,11 +41,12 @@ function getEventInfo(eventId, support, appendSelector, modalSelector) {
 function supportOppose(support, optionSelector, done) {
 	$.ajax({
 		type: "POST",
-		url: "/transactions",
+		url: "/transactions.json",
 		data: {
 			event_id: localStorage.getItem("event_id"),
 			support: support,
-			amount: $("#contribute-amount").val() * 100,
+			amount_select: $("#contribute-amount").val() * 100,
+			amount_entry: $("#amount-entry").val() * 100,
 			pac_id: $(optionSelector).val()
 		},
 		success: function() {

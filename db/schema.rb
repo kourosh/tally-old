@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 20150323224406) do
     t.datetime "updated_at"
     t.string   "stripe_secret_key"
     t.string   "stripe_publishable_key"
+    t.string   "stripe_user_id"
     t.string   "signup_token"
     t.string   "pac_email"
     t.string   "ideology"

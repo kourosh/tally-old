@@ -24,18 +24,32 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    @transaction = Transaction.new(transaction_params)
+    #Take amount from the right place
+
+    if params[:amount_entry] == ""
+        amount = params[:amount_select]
+    else
+        amount = params[:amount_entry]
+    end
+
+    #Charge Stripe fees to customer
+
+    final_float = amount.to_i + (amount.to_i * 0.029) + 30
+    final_amount = final_float.round
+
+    @transaction = Transaction.new(user_id: current_user.id, event_id: params[:event_id], amount: final_amount, support: params[:support])
+
+    #Create the charge with Stripe
 
     charge = Stripe::Charge.create({
-        :amount => 1000,
+        :amount => final_amount,
         :currency => "usd",
-        :source => get_stripe_customer_id,
+        :customer => get_stripe_customer_id,
         :description => "Tally Contribution",
         :application_fee => 100
     },
-    {
-        :stripe_account => Pac.find(params[:pac_id]).stripe_secret_key
-    })
+    Pac.find(params[:pac_id]).stripe_secret_key
+    )
 
     respond_to do |format|
       if @transaction.save
@@ -72,14 +86,9 @@ class TransactionsController < ApplicationController
     end
   end
 
-  private
+private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
       @transaction = Transaction.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def transaction_params
-      params[:transaction]
     end
 end
